@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión · Huellitas</title>
+  <meta name="description" content="Inicia sesión en Huellitas y pide todo para tu mascota.">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        <img src="img/logoH.png" alt="Logo Huellitas" class="rounded-circle"
+             style="width:42px;height:42px;object-fit:cover;">
+        <span class="fs-5">
+          <span class="text-gradient">Huellitas</span>
+          <span class="d-block fw-normal text-muted" style="font-size:.7rem;letter-spacing:.08em;">
+            ENTREGAS PARA MASCOTAS
+          </span>
+        </span>
+      </a>
+      <a href="index.html" class="btn btn-outline-brand rounded-pill px-4">
+        <i class="bi bi-arrow-left me-1"></i> Volver al inicio
+      </a>
+    </div>
+  </nav>
+
+  <main class="flex-grow-1 py-5 d-flex align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+
+          <div class="text-center mb-4">
+            <span class="badge badge-soft rounded-pill mb-3">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Bienvenido de vuelta
+            </span>
+            <h1 class="fw-bold display-6 mb-2">
+              Inicia <span class="text-gradient">sesión</span>
+            </h1>
+            <p class="text-secondary mb-0">Accede a tu cuenta Huellitas</p>
+          </div>
+
+          <div id="loginExito" class="alert alert-success rounded-3 d-none mb-4" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong>¡Bienvenido!</strong> Redirigiendo...
+          </div>
+
+          <div id="loginError" class="alert alert-danger rounded-3 d-none mb-4" role="alert">
+            <i class="bi bi-x-circle-fill me-2"></i>
+            Correo o contraseña incorrectos.
+          </div>
+
+          <div class="card-soft p-4 p-lg-5">
+            <form id="formLogin" class="needs-validation" novalidate autocomplete="on">
+
+              <div class="mb-3">
+                <label for="correo" class="form-label small fw-semibold">Correo electrónico</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 rounded-start-3">
+                    <i class="bi bi-envelope text-brand"></i>
+                  </span>
+                  <input type="email" class="form-control border-start-0 rounded-end-3"
+                         id="correo" name="correo" placeholder="tucorreo@ejemplo.com"
+                         required autocomplete="username">
+                  <div class="invalid-feedback">Ingresa un correo válido.</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label small fw-semibold">Contraseña</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 rounded-start-3">
+                    <i class="bi bi-lock text-brand"></i>
+                  </span>
+                  <input type="password" class="form-control border-start-0 border-end-0"
+                         id="password" name="password" placeholder="Tu contraseña"
+                         required minlength="8" autocomplete="current-password">
+                  <button class="btn btn-outline-secondary border-start-0 rounded-end-3" type="button"
+                          onclick="togglePass('password', this)" aria-label="Mostrar contraseña" tabindex="-1">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <div class="invalid-feedback">Mínimo 8 caracteres.</div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="recordarme">
+                  <label class="form-check-label small" for="recordarme">Recordarme</label>
+                </div>
+                <a href="#" class="text-brand small fw-semibold">¿Olvidaste tu contraseña?</a>
+              </div>
+
+              <button type="submit" class="btn btn-brand btn-lg rounded-pill w-100 mb-3">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar sesión
+              </button>
+
+              <div class="text-center">
+                <span class="text-secondary small">
+                  ¿No tienes cuenta?
+                  <a href="registro.html" class="text-brand fw-semibold">Regístrate gratis</a>
+                </span>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pt-4 pb-3">
+    <div class="container text-center small">
+      <span>&copy; 2025 Huellitas · Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script>
+    function togglePass(inputId, btn) {
+      var input = document.getElementById(inputId);
+      var icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'bi bi-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'bi bi-eye';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('formLogin');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!form.checkValidity()) {
+          form.classList.add('was-validated');
+          return;
+        }
+
+        // Validar contra el usuario guardado
+        var guardado = null;
+        try {
+          guardado = JSON.parse(localStorage.getItem('huellitas_usuario') || 'null');
+        } catch (err) { /* nada */ }
+
+        var correo = document.getElementById('correo').value.trim().toLowerCase();
+        var password = document.getElementById('password').value;
+
+        // Si existe usuario y coinciden correo Y contraseña
+        if (guardado &&
+            guardado.correo &&
+            guardado.correo.toLowerCase() === correo &&
+            (!guardado.password || guardado.password === password)) {
+
+          document.getElementById('loginError').classList.add('d-none');
+          document.getElementById('loginExito').classList.remove('d-none');
+
+          // ⬇️ FIX: Activar sesión
+          localStorage.setItem('huellitas_sesion', 'true');
+          console.log('✅ Sesión activada');
+
+          form.reset();
+          form.classList.remove('was-validated');
+          setTimeout(function () {
+            window.location.href = 'index.html';
+          }, 1500);
+        } else {
+          document.getElementById('loginError').classList.remove('d-none');
+          console.log('❌ Credenciales incorrectas');
+        }
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

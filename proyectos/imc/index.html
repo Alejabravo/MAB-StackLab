@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC - Centro Médico</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    
+    <div class="barra-superior">
+        <div class="marca">
+            
+            <svg class="logo-svg" viewBox="0 0 100 100" width="42" height="42" aria-hidden="true">
+                <defs>
+                    <linearGradient id="gradLogo" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#0056b3"/>
+                        <stop offset="100%" stop-color="#00a896"/>
+                    </linearGradient>
+                </defs>
+                <path d="M50 5 L88 18 L88 50 Q88 78 50 95 Q12 78 12 50 L12 18 Z" fill="url(#gradLogo)"/>
+                <path d="M50 28 L50 72 M28 50 L72 50" stroke="#ffffff" stroke-width="13" stroke-linecap="round"/>
+            </svg>
+            <div class="marca-texto">
+                <span class="marca-nombre">Centro Médico</span>
+                <span class="marca-sub">Salud Plus</span>
+            </div>
+        </div>
+        <div class="info">Sistema de evaluación nutricional</div>
+    </div>
+
+    <div class="contenedor">
+
+    
+        <div id="vista-formulario">
+            <h1>Calculadora de Índice de Masa Corporal</h1>
+            <p class="subtitulo">Evaluación nutricional para pacientes</p>
+
+            <form id="formulario">
+                <label for="nombre">Nombre del paciente</label>
+                <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+
+                <label for="peso">Peso (kg)</label>
+                <input type="number" id="peso" step="0.1" min="1" required placeholder="Ej: 70.5">
+
+                <label for="altura">Altura (m)</label>
+                <input type="number" id="altura" step="0.01" min="0.5" required placeholder="Ej: 1.75">
+
+                <button type="submit">Calcular IMC</button>
+            </form>
+
+            <div class="tabla-referencia">
+                <h3> Tabla de clasificación</h3>
+                <table>
+                    <thead>
+                        <tr><th>IMC</th><th>Situación</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Menor a 18,5</td><td>Bajo peso</td></tr>
+                        <tr><td>18,5 – 24,9</td><td>Normopeso</td></tr>
+                        <tr><td>25 – 26,9</td><td>Sobrepeso grado I</td></tr>
+                        <tr><td>27 – 29,9</td><td>Sobrepeso grado II</td></tr>
+                        <tr><td>30 – 34,9</td><td>Obesidad de tipo I</td></tr>
+                        <tr><td>35 – 39,9</td><td>Obesidad de tipo II</td></tr>
+                        <tr><td>40 – 49,9</td><td>Obesidad de tipo III (mórbida)</td></tr>
+                        <tr><td>Mayor a 50</td><td>Obesidad de tipo IV (extrema)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        <div id="vista-resultado" style="display:none;">
+            <h1>Resultado de la evaluación</h1>
+            <p class="subtitulo">Reporte del paciente</p>
+
+            <div class="resultado">
+                <div class="dato"><span>Paciente:</span><span id="res-nombre"></span></div>
+                <div class="dato"><span>Peso:</span><span id="res-peso"></span></div>
+                <div class="dato"><span>Altura:</span><span id="res-altura"></span></div>
+                <div class="dato"><span>IMC:</span><span class="imc-valor" id="res-imc"></span></div>
+                <div class="clasificacion" id="res-clasificacion"></div>
+
+                
+                <div class="grafico-imc">
+                    <h4>Ubicación en la escala de IMC</h4>
+                    <div class="escala-wrapper">
+                        <div class="escala">
+                            <div class="seg bajo-peso"   style="width: 18.89%"></div>
+                            <div class="seg normopeso"   style="width: 14.44%"></div>
+                            <div class="seg sobrepeso-1" style="width: 4.45%"></div>
+                            <div class="seg sobrepeso-2" style="width: 6.66%"></div>
+                            <div class="seg obesidad-1"  style="width: 11.12%"></div>
+                            <div class="seg obesidad-2"  style="width: 11.11%"></div>
+                            <div class="seg obesidad-3"  style="width: 22.22%"></div>
+                            <div class="seg obesidad-4"  style="width: 11.11%"></div>
+                        </div>
+                        <div class="marcador" id="marcador-imc">
+                            <div class="valor-pin" id="valor-pin"></div>
+                            <div class="pin"></div>
+                        </div>
+                    </div>
+                    <div class="eje-labels">
+                        <span style="left: 0%">10</span>
+                        <span style="left: 18.89%">18.5</span>
+                        <span style="left: 33.33%">25</span>
+                        <span style="left: 44.44%">30</span>
+                        <span style="left: 66.67%">40</span>
+                        <span style="left: 100%">50+</span>
+                    </div>
+                </div>
+                
+
+            </div>
+
+            <div class="recomendacion">
+                <div id="res-recomendacion"></div>
+            </div>
+
+            <a href="#" id="btn-volver" class="boton-volver">← Evaluar otro paciente</a>
+        </div>
+
+    </div>
+
+    <div class="pie">
+        © 2026 Centro Médico Salud Plus — Todos los derechos reservados
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

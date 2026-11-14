@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huellitas · Entregas para mascotas</title>
+  <meta name="description" content="Huellitas: entregas rápidas, seguras y de calidad para tu mascota. Productos de las mejores tiendas en menos de 30 minutos.">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#inicio">
+        <img src="img/logoH.png" alt="Logo Huellitas" class="rounded-circle" style="width:42px;height:42px;object-fit:cover;">
+        <span class="fs-5">
+          <span class="text-gradient">Huellitas</span>
+          <span class="d-block fw-normal text-muted" style="font-size:.7rem;letter-spacing:.08em;">ENTREGAS PARA MASCOTAS</span>
+        </span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuHuellitas" aria-controls="menuHuellitas" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuHuellitas">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#objetivos">Objetivos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más</a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+              <li><a class="dropdown-item" href="#tiendas"><i class="bi bi-shop me-2 text-brand"></i>Tiendas aliadas</a></li>
+              <li><a class="dropdown-item" href="#perdidas"><i class="bi bi-search-heart me-2 text-brand"></i>Mascotas perdidas</a></li>
+              <li><a class="dropdown-item" href="#adopcion"><i class="bi bi-house-heart me-2 text-brand"></i>Adopción</a></li>
+              <li><a class="dropdown-item" href="#donaciones"><i class="bi bi-gift me-2 text-brand"></i>Donaciones</a></li>
+              <li><a class="dropdown-item" href="#testimonios"><i class="bi bi-chat-quote me-2 text-brand"></i>Testimonios</a></li>
+              <li><a class="dropdown-item" href="#contacto"><i class="bi bi-envelope me-2 text-brand"></i>Contacto</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="btn btn-link nav-link p-2" type="button" data-bs-toggle="collapse" data-bs-target="#buscadorTop" aria-expanded="false" aria-label="Buscar">
+              <i class="bi bi-search fs-5"></i>
+            </button>
+          </li>
+
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button class="btn btn-link nav-link p-2 position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-label="Ver carrito">
+              <i class="bi bi-bag fs-5"></i>
+              <span id="carritoContador" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-brand d-none">0</span>
+            </button>
+          </li>
+
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0" id="btnRegistrarse">
+            <a href="registro.html" class="btn btn-brand rounded-pill px-4 w-100"><i class="bi bi-person-plus me-1"></i> Registrarse</a>
+          </li>
+
+          <li class="nav-item dropdown ms-lg-3 mt-2 mt-lg-0 d-none" id="menuUsuario">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img id="avatarNavbar" src="" alt="Avatar" class="rounded-circle" style="width:32px;height:32px;object-fit:cover;display:none;">
+              <span id="nombreNavbar" class="fw-semibold small">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+              <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-person-circle me-2 text-brand"></i>Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#productos"><i class="bi bi-bag me-2 text-brand"></i>Mis pedidos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#" onclick="cerrarSesion(event)"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="collapse mt-3" id="buscadorTop">
+          <form class="d-flex gap-2" role="search" onsubmit="buscarProducto(event)">
+            <input type="search" id="inputBusqueda" class="form-control rounded-pill" placeholder="Buscar productos, tiendas, mascotas..." aria-label="Buscar">
+            <button class="btn btn-brand rounded-pill px-4" type="submit"><i class="bi bi-search"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header id="inicio" class="hero py-5">
+    <div class="container py-lg-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge badge-soft rounded-pill mb-3"><i class="bi bi-lightning-charge-fill me-1"></i> Entregas especializadas</span>
+          <h1 class="display-4 fw-bold lh-sm mb-3">Lo mejor para tu <span class="text-gradient">mejor amigo</span></h1>
+          <p class="fs-5 text-secondary mb-4" style="max-width:32rem;">Entregas rápidas, seguras y en perfectas condiciones. Productos de calidad que tu mascota merece, en el menor tiempo posible.</p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="#productos" class="btn btn-brand btn-lg rounded-pill px-4"><i class="bi bi-bag-heart me-2"></i>Pedir ahora</a>
+            <a href="#nosotros" class="btn btn-outline-brand btn-lg rounded-pill px-4">Saber más</a>
+          </div>
+          <div class="row g-4 pt-4 border-top">
+            <div class="col-4"><div class="stat-number">+15.000</div><div class="stat-label">Entregas realizadas</div></div>
+            <div class="col-4"><div class="stat-number">98%</div><div class="stat-label">Satisfacción</div></div>
+            <div class="col-4"><div class="stat-number">30 min</div><div class="stat-label">Tiempo promedio</div></div>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <img src="img/gatoini.png" alt="Entrega de productos para mascotas Huellitas" class="hero-img img-fluid" style="max-height:460px;width:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow-1">
+
+    <!-- ================= NOSOTROS / OBJETIVOS ================= -->
+    <section id="nosotros" class="py-5">
+      <div class="container py-lg-4">
+        <div class="row align-items-center g-4 mb-5">
+          <div class="col-lg-4">
+            <span class="badge badge-soft rounded-pill mb-3"><i class="bi bi-paw-fill me-1"></i> Nosotros</span>
+            <h2 class="fw-bold display-6 mb-3">Sobre <span class="text-gradient">Huellitas</span></h2>
+            <p class="text-secondary mb-0">Somos la plataforma de entregas especializadas para mascotas. Conectamos a los dueños con las mejores tiendas, garantizando rapidez, seguridad y calidad en cada pedido.</p>
+          </div>
+          <div class="col-lg-8">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="card-soft h-100 p-3 text-center">
+                  <div class="icon-circle mx-auto mb-2" style="width:44px;height:44px;font-size:1.1rem;"><i class="bi bi-bullseye"></i></div>
+                  <h3 class="h6 fw-bold text-brand mb-1">Misión</h3>
+                  <p class="text-secondary small mb-0">Entregas rápidas y seguras de productos para mascotas.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-soft h-100 p-3 text-center">
+                  <div class="icon-circle mx-auto mb-2" style="width:44px;height:44px;font-size:1.1rem;"><i class="bi bi-eye"></i></div>
+                  <h3 class="h6 fw-bold text-brand mb-1">Visión</h3>
+                  <p class="text-secondary small mb-0">Ser la plataforma líder de entregas para mascotas en Colombia.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-soft h-100 p-3 text-center">
+                  <div class="icon-circle mx-auto mb-2" style="width:44px;height:44px;font-size:1.1rem;"><i class="bi bi-heart-fill"></i></div>
+                  <h3 class="h6 fw-bold text-brand mb-1">Valores</h3>
+                  <p class="text-secondary small mb-0">Compromiso, rapidez y amor por los animales.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-5 opacity-25">
+
+        <div id="objetivos" class="text-center mb-4">
+          <span class="badge badge-soft rounded-pill mb-3"><i class="bi bi-stars me-1"></i> Lo que hacemos</span>
+          <h2 class="fw-bold display-6 mb-2">Objetivos y <span class="text-gradient">servicios</span></h2>
+          <p class="text-secondary mb-0">Todo lo que ofrecemos y hacia dónde vamos</p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <div class="icon-circle" style="width:48px;height:48px;font-size:1.2rem;"><i class="bi bi-rocket-takeoff"></i></div>
+                <h3 class="h6 fw-bold mb-0">Entregas en 30 min</h3>
+              </div>
+              <p class="text-secondary small mb-0">Rutas optimizadas y geolocalización para que llegue rapidísimo.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <div class="icon-circle" style="width:48px;height:48px;font-size:1.2rem;"><i class="bi bi-patch-check"></i></div>
+                <h3 class="h6 fw-bold mb-0">Calidad garantizada</h3>
+              </div>
+              <p class="text-secondary small mb-0">Productos verificados y control en cada entrega.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <div class="icon-circle" style="width:48px;height:48px;font-size:1.2rem;"><i class="bi bi-geo-alt"></i></div>
+                <h3 class="h6 fw-bold mb-0">Seguimiento en vivo</h3>
+              </div>
+              <p class="text-secondary small mb-0">Mira en tiempo real dónde va tu pedido.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4 bg-brand-soft border-0">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <span class="badge bg-brand rounded-pill">01</span><h3 class="h6 fw-bold mb-0">Rutas optimizadas</h3>
+              </div>
+              <p class="text-secondary small mb-0">Entregas siempre por debajo de 30 minutos.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4 bg-brand-soft border-0">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <span class="badge bg-brand rounded-pill">02</span><h3 class="h6 fw-bold mb-0">Alianzas locales</h3>
+              </div>
+              <p class="text-secondary small mb-0">Trabajamos con las mejores tiendas del país.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4 bg-brand-soft border-0">
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <span class="badge bg-brand rounded-pill">03</span><h3 class="h6 fw-bold mb-0">98% satisfacción</h3>
+              </div>
+              <p class="text-secondary small mb-0">Clientes felices y mascotas bien atendidas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCTOS ================= -->
+    <section id="productos" class="py-5 bg-white border-top border-bottom">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Nuestros <span class="text-gradient">Productos</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Todo lo que tu mascota necesita, con entrega express</p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" id="filtrosProductos">
+          <button class="btn btn-filtro-producto active" data-categoria="todos" onclick="filtrarProductos('todos', this)">Todos</button>
+          <button class="btn btn-filtro-producto" data-categoria="perro" onclick="filtrarProductos('perro', this)"><i class="bi bi-dog me-1"></i>Perros</button>
+          <button class="btn btn-filtro-producto" data-categoria="gato" onclick="filtrarProductos('gato', this)"><i class="bi bi-cat me-1"></i>Gatos</button>
+          <button class="btn btn-filtro-producto" data-categoria="hamster" onclick="filtrarProductos('hamster', this)">Hamsters</button>
+          <button class="btn btn-filtro-producto" data-categoria="peces" onclick="filtrarProductos('peces', this)"><i class="bi bi-water me-1"></i>Peces</button>
+          <button class="btn btn-filtro-producto" data-categoria="conejo" onclick="filtrarProductos('conejo', this)">Conejos</button>
+          <button class="btn btn-filtro-producto" data-categoria="aves" onclick="filtrarProductos('aves', this)"><i class="bi bi-twitter me-1"></i>Aves</button>
+        </div>
+
+        <!-- ================= PRODUCTOS DESTACADOS (8) ================= -->
+        <div class="row g-4" id="gridProductos">
+          <!-- PERROS (4) -->
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento premium perro" data-categoria="perro">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-bag-fill"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Alimento</span>
+              <h3 class="h6 fw-bold mb-1">Alimento Premium Adulto</h3>
+              <p class="text-secondary small mb-2">Bolsa 15 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Fórmula balanceada con proteínas de alta calidad.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$89.900</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Alimento Premium Adulto', 89900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento cachorro perro" data-categoria="perro">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-bag"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Alimento</span>
+              <h3 class="h6 fw-bold mb-1">Croquetas Cachorro</h3>
+              <p class="text-secondary small mb-2">Bolsa 10 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Rico en DHA para el desarrollo cerebral.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$75.000</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Croquetas Cachorro', 75000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento senior perro" data-categoria="perro">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-bag-heart"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Alimento</span>
+              <h3 class="h6 fw-bold mb-1">Alimento Senior</h3>
+              <p class="text-secondary small mb-2">Bolsa 12 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Protección articular y digestión fácil.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$92.000</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Alimento Senior', 92000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete hueso caucho perro" data-categoria="perro">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-heart-fill"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Juguete</span>
+              <h3 class="h6 fw-bold mb-1">Hueso de Caucho</h3>
+              <p class="text-secondary small mb-2">Resistente · Flotante</p>
+              <p class="text-secondary small fst-italic mb-3">Ideal para mordedores y limpieza dental.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$24.900</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Hueso de Caucho', 24900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GATOS (4) -->
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento gato adulto" data-categoria="gato">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-egg-fried"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Alimento</span>
+              <h3 class="h6 fw-bold mb-1">Alimento Adulto Pollo</h3>
+              <p class="text-secondary small mb-2">Bolsa 10 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Alta proteína y taurina para el corazón.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$115.000</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Alimento Adulto Pollo', 115000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento gatito" data-categoria="gato">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-bag"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Alimento</span>
+              <h3 class="h6 fw-bold mb-1">Croquetas Gatito</h3>
+              <p class="text-secondary small mb-2">Bolsa 3 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Nutrición completa para crecimiento.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$55.000</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Croquetas Gatito', 55000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="arena aglutinante gato" data-categoria="gato">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-box"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Higiene</span>
+              <h3 class="h6 fw-bold mb-1">Arena Aglutinante</h3>
+              <p class="text-secondary small mb-2">Bulto 10 kg · Lavanda</p>
+              <p class="text-secondary small fst-italic mb-3">Control de olores prolongado.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$38.500</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arena Aglutinante', 38500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 producto-item" data-nombre="arena silica gato" data-categoria="gato">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="product-icon mb-3"><i class="bi bi-gem"></i></div>
+              <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Higiene</span>
+              <h3 class="h6 fw-bold mb-1">Arena de Sílica</h3>
+              <p class="text-secondary small mb-2">Bulto 5 kg</p>
+              <p class="text-secondary small fst-italic mb-3">Cristales ultra absorbentes, no deja polvo.</p>
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                <span class="fw-bold text-brand fs-5">$48.000</span>
+                <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arena de Sílica', 48000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTÓN PARA DESPLEGAR EL CATÁLOGO -->
+        <div class="text-center mt-5 mb-4">
+          <button class="btn btn-brand btn-lg rounded-pill px-5 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#catalogoCompleto" aria-expanded="false" aria-controls="catalogoCompleto" id="btnVerCatalogo">
+            Ver catálogo completo  <i class="bi bi-arrow-down ms-2"></i>
+          </button>
+        </div>
+
+        <!-- ================= CATÁLOGO COMPLETO OCULTO ================= -->
+        <div class="collapse" id="catalogoCompleto">
+          <div class="row g-4 mt-2" id="gridProductosExtra">
+            <!-- PERROS (16) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pelota tenis perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Pelotas de Tenis (x3)</h3>
+                <p class="text-secondary small mb-2">Rebote perfecto</p>
+                <p class="text-secondary small fst-italic mb-3">Las favoritas para jugar a lanzar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pelotas de Tenis', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cuerda mordida perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-node-plus"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Cuerda de Mordida</h3>
+                <p class="text-secondary small mb-2">Algodón trenzado</p>
+                <p class="text-secondary small fst-italic mb-3">Perfecto para jugar a tirar y halar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cuerda de Mordida', 18500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cama acolchada perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-moon-stars-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Cama Nube Acolchada</h3>
+                <p class="text-secondary small mb-2">Talla M · Lavable</p>
+                <p class="text-secondary small fst-italic mb-3">Espuma que cuida las articulaciones.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$74.900</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cama Nube Acolchada', 74900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="collar cuero perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bookmark-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Collar de Cuero</h3>
+                <p class="text-secondary small mb-2">Ajustable · Hebilla metálica</p>
+                <p class="text-secondary small fst-italic mb-3">Elegante y resistente para paseos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$35.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Collar de Cuero', 35000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="correa retractil perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-link-45deg"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Correa Retráctil</h3>
+                <p class="text-secondary small mb-2">5 metros · Ergonómica</p>
+                <p class="text-secondary small fst-italic mb-3">Mayor libertad y control en el paseo.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$45.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Correa Retráctil', 45000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arnes antitirones perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-shield-check"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Arnés Antitirones</h3>
+                <p class="text-secondary small mb-2">Acolchado · Talla L</p>
+                <p class="text-secondary small fst-italic mb-3">Evita que el perro se lastime el cuello.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$55.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arnés Antitirones', 55000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="shampoo antipulgas perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Shampoo Antipulgas</h3>
+                <p class="text-secondary small mb-2">500 ml · Avena</p>
+                <p class="text-secondary small fst-italic mb-3">Limpia profundamente y calma la piel.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Shampoo Antipulgas', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cepillo cerdas perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-brush"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Cepillo de Cerdas</h3>
+                <p class="text-secondary small mb-2">Mango ergonómico</p>
+                <p class="text-secondary small fst-italic mb-3">Elimina el pelo suelto y evita nudos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$19.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cepillo de Cerdas', 19000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="snacks naturales perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cookie"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Snacks Naturales</h3>
+                <p class="text-secondary small mb-2">500 g · Sin conservantes</p>
+                <p class="text-secondary small fst-italic mb-3">Ideales como premio o entrenamiento.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$24.900</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Snacks Naturales Perro', 24900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="hueso prensado perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-gem"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Hueso Prensado</h3>
+                <p class="text-secondary small mb-2">Pack x2 · Dental</p>
+                <p class="text-secondary small fst-italic mb-3">Ayuda a remover el sarro de los dientes.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Hueso Prensado', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comedero doble perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-grid-1x2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Comedero Doble</h3>
+                <p class="text-secondary small mb-2">Acero inoxidable</p>
+                <p class="text-secondary small fst-italic mb-3">Base antideslizante para comida y agua.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$42.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Comedero Doble', 42000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bebedero automatico perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Bebedero Automático</h3>
+                <p class="text-secondary small mb-2">2 Litros · Filtro</p>
+                <p class="text-secondary small fst-italic mb-3">Agua fresca y limpia todo el día.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$65.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bebedero Automático', 65000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="transportadora perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box-seam"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Viaje</span>
+                <h3 class="h6 fw-bold mb-1">Transportadora IATA</h3>
+                <p class="text-secondary small mb-2">Talla M · Rígida</p>
+                <p class="text-secondary small fst-italic mb-3">Aprobada para viajes en avión.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$150.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Transportadora IATA', 150000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="ropa impermeable perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cloud-rain"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Ropa</span>
+                <h3 class="h6 fw-bold mb-1">Chaqueta Impermeable</h3>
+                <p class="text-secondary small mb-2">Talla S · Con capucha</p>
+                <p class="text-secondary small fst-italic mb-3">Protege a tu perro de la lluvia y el frío.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$48.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Chaqueta Impermeable', 48000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="dentifrico perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-brush"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Kit Dental</h3>
+                <p class="text-secondary small mb-2">Crema + Cepillo</p>
+                <p class="text-secondary small fst-italic mb-3">Sabor a pollo para facilitar la limpieza.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$32.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Kit Dental Perro', 32000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="toallitas humedas perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-file-earmark-medical"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Toallitas Húmedas</h3>
+                <p class="text-secondary small mb-2">Pack x80</p>
+                <p class="text-secondary small fst-italic mb-3">Limpiador rápido para patas y hocico.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$16.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Toallitas Húmedas Perro', 16000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete kong rellenable perro" data-categoria="perro">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-record-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Perro · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Juguete Rellenable</h3>
+                <p class="text-secondary small mb-2">Caucho · Antiansiedad</p>
+                <p class="text-secondary small fst-italic mb-3">Rellénalo de premios para mantenerlo ocupado.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$38.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Juguete Rellenable', 38000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- GATOS (16) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="raton interactivo gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-yin-yang"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Ratón con Cascabel</h3>
+                <p class="text-secondary small mb-2">Pack x3</p>
+                <p class="text-secondary small fst-italic mb-3">Estimula el instinto cazador.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$19.900</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Ratón con Cascabel', 19900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete plumas gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-feather"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Varita con Plumas</h3>
+                <p class="text-secondary small mb-2">Mango plástico</p>
+                <p class="text-secondary small fst-italic mb-3">Ejercicio y diversión garantizada.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Varita con Plumas', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="puntero laser gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-lightning-charge"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Puntero Láser</h3>
+                <p class="text-secondary small mb-2">Luz LED roja</p>
+                <p class="text-secondary small fst-italic mb-3">El juego favorito de los gatos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Puntero Láser', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="rascador gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-columns-gap"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Rascador con Cueva</h3>
+                <p class="text-secondary small mb-2">Sisal natural · 40cm</p>
+                <p class="text-secondary small fst-italic mb-3">Cuida sus uñas y le da un escondite.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$65.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Rascador con Cueva', 65000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cama cueva gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cloud-moon"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Cama Tipo Cueva</h3>
+                <p class="text-secondary small mb-2">Peluche suave</p>
+                <p class="text-secondary small fst-italic mb-3">Abrigo y seguridad para dormir.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$58.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cama Tipo Cueva', 58000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="fuente agua gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet-half"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Fuente de Agua</h3>
+                <p class="text-secondary small mb-2">2 Litros · Silenciosa</p>
+                <p class="text-secondary small fst-italic mb-3">Estimula la hidratación con agua en movimiento.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$85.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Fuente de Agua Gato', 85000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comedero doble gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-grid-1x2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Comedero Doble</h3>
+                <p class="text-secondary small mb-2">Cerámica · Antivuelco</p>
+                <p class="text-secondary small fst-italic mb-3">Diseño ergonómico para bigotes.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$35.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Comedero Doble Gato', 35000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arenero cerrado gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-house-door"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Arenero Cerrado</h3>
+                <p class="text-secondary small mb-2">Con filtro de carbón</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene los olores bajo control.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$120.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arenero Cerrado', 120000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="snacks atun gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cookie"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Snacks de Atún</h3>
+                <p class="text-secondary small mb-2">Pack x4</p>
+                <p class="text-secondary small fst-italic mb-3">Premios suaves y deliciosos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Snacks de Atún', 14000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pasta malta gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-moisture"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Pasta de Malta</h3>
+                <p class="text-secondary small mb-2">Tubo 100g</p>
+                <p class="text-secondary small fst-italic mb-3">Ayuda a expulsar las bolas de pelo.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pasta de Malta', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cepillo pelo gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-brush"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Cepillo Quita Pelos</h3>
+                <p class="text-secondary small mb-2">Autolimpiable</p>
+                <p class="text-secondary small fst-italic mb-3">Elimina el pelo muerto fácilmente.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$25.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cepillo Quita Pelos Gato', 25000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="transportadora gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box-seam"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Viaje</span>
+                <h3 class="h6 fw-bold mb-1">Guacal Transportador</h3>
+                <p class="text-secondary small mb-2">Rígido · Puerta frontal</p>
+                <p class="text-secondary small fst-italic mb-3">Seguro para visitas al veterinario.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$75.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Guacal Transportador Gato', 75000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete tunel gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bezier2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Túnel Plegable</h3>
+                <p class="text-secondary small mb-2">3 vías · Nylon</p>
+                <p class="text-secondary small fst-italic mb-3">Horas de exploración y escondites.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$45.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Túnel Plegable Gato', 45000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="hierba gatera" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-flower2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Hierba Gatera</h3>
+                <p class="text-secondary small mb-2">Frasco 30g</p>
+                <p class="text-secondary small fst-italic mb-3">Estimula su energía y felicidad.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Hierba Gatera', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="shampoo gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Shampoo en Seco</h3>
+                <p class="text-secondary small mb-2">Espuma 200ml</p>
+                <p class="text-secondary small fst-italic mb-3">Limpia sin necesidad de agua.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Shampoo en Seco Gato', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="collar cascabel gato" data-categoria="gato">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bookmark"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Gato · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Collar con Cascabel</h3>
+                <p class="text-secondary small mb-2">Seguridad · Ajustable</p>
+                <p class="text-secondary small fst-italic mb-3">Permite escucharlo y lo protege.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Collar con Cascabel Gato', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- HAMSTERS (20) -->
+            <!-- (Se han resumido los anteriores por brevedad, aquí van los que faltan) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="mezcla semillas hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Mezcla de Semillas</h3>
+                <p class="text-secondary small mb-2">Bolsa 500 g</p>
+                <p class="text-secondary small fst-italic mb-3">Balanceada para roedores pequeños.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.900</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Mezcla de Semillas', 15900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pellets hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-dot"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Pellets Nutritivos</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Aporta vitaminas y minerales esenciales.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pellets Nutritivos', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="rueda ejercicio hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-record-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Rueda de Ejercicio</h3>
+                <p class="text-secondary small mb-2">Silenciosa · Plástico</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene a tu hamster activo sin ruido.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Rueda de Ejercicio', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="rueda madera hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-record"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Rueda de Madera</h3>
+                <p class="text-secondary small mb-2">Natural · Segura</p>
+                <p class="text-secondary small fst-italic mb-3">Materiales libres de tóxicos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Rueda de Madera', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="viruta madera hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-house"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Viruta de Álamo</h3>
+                <p class="text-secondary small mb-2">Paquete 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Lecho absorbente y suave.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Viruta de Álamo', 12500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arena sanitario hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Arena Sanitaria</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg · Absorbente</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para el arenero del hamster.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$16.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arena Sanitaria Hamster', 16000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bebedero hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Bebedero Antigoteo</h3>
+                <p class="text-secondary small mb-2">Capacidad 80 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene el agua limpia y fresca.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bebedero Antigoteo', 14000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comedero ceramica hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Comedero Cerámico</h3>
+                <p class="text-secondary small mb-2">Antivuelco</p>
+                <p class="text-secondary small fst-italic mb-3">No se volcará cuando tu hamster coma.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Comedero Cerámico Hamster', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="jaula hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-grid"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Jaula con Tubos</h3>
+                <p class="text-secondary small mb-2">Con accesorios</p>
+                <p class="text-secondary small fst-italic mb-3">Espacio y diversión para tu roedor.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$110.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Jaula con Tubos', 110000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="casita hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-house-heart"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Casita de Madera</h3>
+                <p class="text-secondary small mb-2">Refugio natural</p>
+                <p class="text-secondary small fst-italic mb-3">Un lugar cálido para dormir.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Casita de Madera Hamster', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="tunel plastico hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bezier2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Túnel Flexible</h3>
+                <p class="text-secondary small mb-2">Colorido · Expandible</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para hacer ejercicio y esconderse.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$20.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Túnel Flexible Hamster', 20000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="columpio madera hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-music-note"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Columpio de Madera</h3>
+                <p class="text-secondary small mb-2">Para colgar en la jaula</p>
+                <p class="text-secondary small fst-italic mb-3">Entretiene y ejercita.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Columpio de Madera Hamster', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete masticable hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-tree"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Mordedor de Manzano</h3>
+                <p class="text-secondary small mb-2">Pack x3</p>
+                <p class="text-secondary small fst-italic mb-3">Cuida el desgaste de sus dientes.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$11.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Mordedor de Manzano Hamster', 11000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="snacks frutas hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-apple"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Snacks de Frutas</h3>
+                <p class="text-secondary small mb-2">Trocitos secos</p>
+                <p class="text-secondary small fst-italic mb-3">Un premio delicioso y natural.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$8.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Snacks de Frutas Hamster', 8500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="piedra dental hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-gem"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Piedra Dental</h3>
+                <p class="text-secondary small mb-2">Minerales</p>
+                <p class="text-secondary small fst-italic mb-3">Ayuda a limar los dientes.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$9.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Piedra Dental Hamster', 9000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bolas paseo hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-globe"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Bola de Paseo</h3>
+                <p class="text-secondary small mb-2">Con ventilación</p>
+                <p class="text-secondary small fst-italic mb-3">Explora la casa de forma segura.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bola de Paseo Hamster', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="nido algodon hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cloud"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Nido de Algodón</h3>
+                <p class="text-secondary small mb-2">Suave · Hipoalergénico</p>
+                <p class="text-secondary small fst-italic mb-3">Material ideal para que haga su cama.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$10.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Nido de Algodón Hamster', 10000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="vitaminas hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-heart-pulse"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Gotas Vitaminas</h3>
+                <p class="text-secondary small mb-2">Frasco 30ml</p>
+                <p class="text-secondary small fst-italic mb-3">Refuerza su sistema inmune.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Gotas Vitaminas Hamster', 14000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cepillo hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-brush"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Cepillo Suave</h3>
+                <p class="text-secondary small mb-2">Mango de madera</p>
+                <p class="text-secondary small fst-italic mb-3">Para mantener su pelaje limpio.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$9.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cepillo Suave Hamster', 9500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="rampa madera hamster" data-categoria="hamster">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-slash-lg"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Hamster · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Rampa de Madera</h3>
+                <p class="text-secondary small mb-2">Ajustable</p>
+                <p class="text-secondary small fst-italic mb-3">Facilita el acceso a niveles superiores.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$13.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Rampa de Madera Hamster', 13000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- PECES (20) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comida escamas peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-water"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Escamas para Peces</h3>
+                <p class="text-secondary small mb-2">Frasco 100 g</p>
+                <p class="text-secondary small fst-italic mb-3">Realza el color y fortalece el sistema inmune.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Escamas para Peces', 18500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pellets betta peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-dot"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Pellets para Betta</h3>
+                <p class="text-secondary small mb-2">Frasco 50 g</p>
+                <p class="text-secondary small fst-italic mb-3">Nutrición específica para peces luchadores.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pellets para Betta', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pecera acrilico peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Pecera de Acrílico</h3>
+                <p class="text-secondary small mb-2">20 Litros · Con tapa</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para peces pequeños. Incluye LED básico.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$120.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pecera de Acrílico', 120000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="filtro agua peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-funnel"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Equipamiento</span>
+                <h3 class="h6 fw-bold mb-1">Filtro de Agua</h3>
+                <p class="text-secondary small mb-2">Sumergible · Silencioso</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene el agua cristalina y oxigenada.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$45.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Filtro de Agua', 45000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="calentador agua peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-thermometer-sun"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Equipamiento</span>
+                <h3 class="h6 fw-bold mb-1">Calentador Automático</h3>
+                <p class="text-secondary small mb-2">50W · Ajustable</p>
+                <p class="text-secondary small fst-italic mb-3">Temperatura estable para peces tropicales.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$38.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Calentador Automático', 38000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="termometro peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-thermometer-half"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Equipamiento</span>
+                <h3 class="h6 fw-bold mb-1">Termómetro de Cristal</h3>
+                <p class="text-secondary small mb-2">Con ventosa</p>
+                <p class="text-secondary small fst-italic mb-3">Monitorea la temperatura del agua.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$9.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Termómetro de Cristal', 9000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="grava acuario peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Decoración</span>
+                <h3 class="h6 fw-bold mb-1">Grava para Acuario</h3>
+                <p class="text-secondary small mb-2">Bolsa 2 kg · Negra</p>
+                <p class="text-secondary small fst-italic mb-3">Sustrato ideal para el fondo de la pecera.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Grava para Acuario', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="decoracion planta peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-tree"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Decoración</span>
+                <h3 class="h6 fw-bold mb-1">Planta Artificial</h3>
+                <p class="text-secondary small mb-2">Resina · No tóxica</p>
+                <p class="text-secondary small fst-italic mb-3">Crea escondites y un entorno natural.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Planta Artificial Peces', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="adorno barco peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-water"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Decoración</span>
+                <h3 class="h6 fw-bold mb-1">Adorno Naufragio</h3>
+                <p class="text-secondary small mb-2">Mediano</p>
+                <p class="text-secondary small fst-italic mb-3">Le da un estilo único a tu acuario.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$35.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Adorno Naufragio', 35000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="luz led peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-lightbulb"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Equipamiento</span>
+                <h3 class="h6 fw-bold mb-1">Luz LED Sumergible</h3>
+                <p class="text-secondary small mb-2">Con ventosas</p>
+                <p class="text-secondary small fst-italic mb-3">Ilumina el acuario de noche.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$25.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Luz LED Sumergible', 25000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="anticloro peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Químicos</span>
+                <h3 class="h6 fw-bold mb-1">Acondicionador Anticloro</h3>
+                <p class="text-secondary small mb-2">Frasco 250 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Prepara el agua del grifo para tus peces.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Acondicionador Anticloro', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bacterias peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-virus"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Químicos</span>
+                <h3 class="h6 fw-bold mb-1">Bacterias Beneficiosas</h3>
+                <p class="text-secondary small mb-2">Frasco 100 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene el ciclo del nitrógeno sano.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bacterias Beneficiosas', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="red peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-mesh"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Red de Pesca</h3>
+                <p class="text-secondary small mb-2">Mango extendible</p>
+                <p class="text-secondary small fst-italic mb-3">Para mover peces de forma segura.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Red de Pesca', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="limpiador cristal peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-eraser"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Limpiador Magnético</h3>
+                <p class="text-secondary small mb-2">Flotante</p>
+                <p class="text-secondary small fst-italic mb-3">Limpia el cristal sin mojarte.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$32.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Limpiador Magnético', 32000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="oxigenador peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-wind"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Equipamiento</span>
+                <h3 class="h6 fw-bold mb-1">Bomba de Aire</h3>
+                <p class="text-secondary small mb-2">Silenciosa</p>
+                <p class="text-secondary small fst-italic mb-3">Oxigena el agua del acuario.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$30.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bomba de Aire', 30000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="sal marina peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-snow"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Químicos</span>
+                <h3 class="h6 fw-bold mb-1">Sal Marina</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Para acuarios de agua salada.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$20.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Sal Marina', 20000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comida fondo peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-arrow-down-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Tabletas de Fondo</h3>
+                <p class="text-secondary small mb-2">Frasco 50 uds</p>
+                <p class="text-secondary small fst-italic mb-3">Alimento para peces de fondo (Limpiafondos).</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$16.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Tabletas de Fondo', 16000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="larvas peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bug"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Larvas de Mosquito</h3>
+                <p class="text-secondary small mb-2">Liofilizadas</p>
+                <p class="text-secondary small fst-italic mb-3">Snack altamente proteico.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$11.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Larvas de Mosquito', 11000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="burbujeador peces" data-categoria="peces">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-record-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Peces · Decoración</span>
+                <h3 class="h6 fw-bold mb-1">Burbujeador</h3>
+                <p class="text-secondary small mb-2">Piedra difusora</p>
+                <p class="text-secondary small fst-italic mb-3">Efecto de cortina de burbujas.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$10.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Burbujeador', 10000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONEJOS (20) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pellets alfalfa conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-flower1"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Pellets de Alfalfa</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Alimento balanceado rico en fibra.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$26.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pellets de Alfalfa', 26000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="heno natural conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-layers"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Heno de Timothy</h3>
+                <p class="text-secondary small mb-2">Paquete 2 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Indispensable en la dieta diaria.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$20.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Heno de Timothy', 20000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete masticable conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-apple"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Mordedor de Manzano</h3>
+                <p class="text-secondary small mb-2">Madera natural</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene los dientes sanos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$16.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Mordedor de Manzano', 16500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bebedero jaula conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet-half"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Bebedero de Jaula</h3>
+                <p class="text-secondary small mb-2">Capacidad 500 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Evita que el conejo derrame el agua.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$19.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bebedero de Jaula', 19000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comedero ceramica conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Comedero Pesado</h3>
+                <p class="text-secondary small mb-2">Cerámica · Antivuelco</p>
+                <p class="text-secondary small fst-italic mb-3">No se vuelca mientras come.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Comedero Pesado', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="jaula conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-grid"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Jaula Espaciosa</h3>
+                <p class="text-secondary small mb-2">Con bandeja extraíble</p>
+                <p class="text-secondary small fst-italic mb-3">Fácil de limpiar y segura.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$180.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Jaula Espaciosa', 180000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="tunel tela conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bezier2"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Túnel de Tela</h3>
+                <p class="text-secondary small mb-2">Plegable</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para esconderse y jugar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$35.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Túnel de Tela', 35000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="rampa madera conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-slash-lg"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Rampa de Madera</h3>
+                <p class="text-secondary small mb-2">Antideslizante</p>
+                <p class="text-secondary small fst-italic mb-3">Para que suba y baje de su jaula.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Rampa de Madera', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="snacks zanahoria conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-carrot"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Snacks de Zanahoria</h3>
+                <p class="text-secondary small mb-2">Deshidratada</p>
+                <p class="text-secondary small fst-italic mb-3">Premio crujiente y saludable.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Snacks de Zanahoria', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arena conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Arena de Papel</h3>
+                <p class="text-secondary small mb-2">Bolsa 5 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Absorbente y libre de polvo.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$25.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arena de Papel', 25000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="nido conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cloud"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Nido de Paja</h3>
+                <p class="text-secondary small mb-2">Natural</p>
+                <p class="text-secondary small fst-italic mb-3">Un refugio acogedor para descansar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Nido de Paja', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="transportadora conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box-seam"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Viaje</span>
+                <h3 class="h6 fw-bold mb-1">Transportadora Rígida</h3>
+                <p class="text-secondary small mb-2">Talla M</p>
+                <p class="text-secondary small fst-italic mb-3">Seguro para paseos al veterinario.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$85.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Transportadora Rígida', 85000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arnes conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-shield-check"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Arnés y Correa</h3>
+                <p class="text-secondary small mb-2">Ajustable · Suave</p>
+                <p class="text-secondary small fst-italic mb-3">Para pasear de forma segura.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$32.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arnés y Correa', 32000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="piedra mineral conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-gem"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Piedra Mineral</h3>
+                <p class="text-secondary small mb-2">Con soporte</p>
+                <p class="text-secondary small fst-italic mb-3">Aporta calcio y minerales.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$9.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Piedra Mineral', 9000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="vitaminas conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-heart-pulse"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Gotas Vitaminas</h3>
+                <p class="text-secondary small mb-2">Frasco 50 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Refuerza su salud y apetito.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Gotas Vitaminas', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cepillo conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-brush"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Cepillo Suave</h3>
+                <p class="text-secondary small mb-2">Para pelo corto</p>
+                <p class="text-secondary small fst-italic mb-3">Elimina el pelo muerto.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cepillo Suave', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="heno alfalfa conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-flower3"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Heno de Alfalfa</h3>
+                <p class="text-secondary small mb-2">Paquete 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para conejos jóvenes o en crecimiento.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Heno de Alfalfa', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete pelota conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Pelota de Mimbre</h3>
+                <p class="text-secondary small mb-2">Natural</p>
+                <p class="text-secondary small fst-italic mb-3">Para lanzar y morder.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pelota de Mimbre', 14000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="desparasitante conejo" data-categoria="conejo">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-capsule"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Conejo · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Desparasitante</h3>
+                <p class="text-secondary small mb-2">Pipeta</p>
+                <p class="text-secondary small fst-italic mb-3">Protección contra parásitos externos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$26.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Desparasitante Conejo', 26000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- AVES (20) -->
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="mezcla aves alimento" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-feather"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Mezcla para Canarios</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Semillas seleccionadas de alta calidad.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Mezcla para Canarios', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="pellets aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-dot"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Pellets de Frutas</h3>
+                <p class="text-secondary small mb-2">Bolsa 500 g</p>
+                <p class="text-secondary small fst-italic mb-3">Nutrición completa, evita selectividad.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$28.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Pellets de Frutas', 28000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="jaula aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-grid-3x3-gap"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Hábitat</span>
+                <h3 class="h6 fw-bold mb-1">Jaula Mediana</h3>
+                <p class="text-secondary small mb-2">Incluye comederos</p>
+                <p class="text-secondary small fst-italic mb-3">Espaciosa para periquitos.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$95.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Jaula Mediana', 95000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="columpio madera aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-music-note-beamed"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Columpio de Madera</h3>
+                <p class="text-secondary small mb-2">Con cascabeles</p>
+                <p class="text-secondary small fst-italic mb-3">Entretiene y ejercita a tu ave.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.900</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Columpio de Madera Aves', 14900)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="vitaminas liquidas aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-heart-pulse"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Vitaminas Líquidas</h3>
+                <p class="text-secondary small mb-2">Frasco 50 ml</p>
+                <p class="text-secondary small fst-italic mb-3">Suplemento para el plumaje.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$17.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Vitaminas Líquidas Aves', 17500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="percha madera aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-slash-lg"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Percha Natural</h3>
+                <p class="text-secondary small mb-2">Rama de madera</p>
+                <p class="text-secondary small fst-italic mb-3">Desgasta sus uñas de forma natural.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Percha Natural', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="comedero aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-circle-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Comedero Exterior</h3>
+                <p class="text-secondary small mb-2">Plástico</p>
+                <p class="text-secondary small fst-italic mb-3">Fácil de rellenar desde fuera.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$10.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Comedero Exterior', 10000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="bebedero aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-droplet"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Accesorio</span>
+                <h3 class="h6 fw-bold mb-1">Bebedero Tubular</h3>
+                <p class="text-secondary small mb-2">Capacidad 100ml</p>
+                <p class="text-secondary small fst-italic mb-3">Mantiene el agua limpia.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$11.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bebedero Tubular', 11000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="arena pajaros" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Arena para Pájaros</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Fondo de jaula, fácil de limpiar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$15.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Arena para Pájaros', 15000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="nido fibra aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cloud"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Confort</span>
+                <h3 class="h6 fw-bold mb-1">Nido de Fibra</h3>
+                <p class="text-secondary small mb-2">Material suave</p>
+                <p class="text-secondary small fst-italic mb-3">Ideal para que descansen o aniden.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Nido de Fibra', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="juguete campana aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bell"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Juguete Campana</h3>
+                <p class="text-secondary small mb-2">Colgante</p>
+                <p class="text-secondary small fst-italic mb-3">Hace sonidos que estimulan al ave.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$13.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Juguete Campana', 13500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="espejo aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-square"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Juguete</span>
+                <h3 class="h6 fw-bold mb-1">Espejo con Cascabel</h3>
+                <p class="text-secondary small mb-2">Inoxidable</p>
+                <p class="text-secondary small fst-italic mb-3">Para que se mire y juegue.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$9.500</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Espejo con Cascabel', 9500)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="banera aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-water"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Bañera para Aves</h3>
+                <p class="text-secondary small mb-2">Exterior · Plástico</p>
+                <p class="text-secondary small fst-italic mb-3">Para que tu ave se refresque.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$12.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Bañera para Aves', 12000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="sepiolita aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-gem"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Piedra Sepiolita</h3>
+                <p class="text-secondary small mb-2">Bloque</p>
+                <p class="text-secondary small fst-italic mb-3">Ayuda a la digestión y desgaste del pico.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$14.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Piedra Sepiolita', 14000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento periquitos" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bag"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Alimento Periquitos</h3>
+                <p class="text-secondary small mb-2">Bolsa 1 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Mezcla especial de semillas.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$20.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Alimento Periquitos', 20000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="alimento loros" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-bag-fill"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Alimento</span>
+                <h3 class="h6 fw-bold mb-1">Alimento Loros</h3>
+                <p class="text-secondary small mb-2">Bolsa 2 kg</p>
+                <p class="text-secondary small fst-italic mb-3">Frutos secos y semillas grandes.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$35.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Alimento Loros', 35000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="snacks miel aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-cookie"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Snacks</span>
+                <h3 class="h6 fw-bold mb-1">Barritas de Miel</h3>
+                <p class="text-secondary small mb-2">Pack x2</p>
+                <p class="text-secondary small fst-italic mb-3">Premio dulce y energético.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$16.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Barritas de Miel', 16000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="transportadora aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-box-seam"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Viaje</span>
+                <h3 class="h6 fw-bold mb-1">Transportadora Aves</h3>
+                <p class="text-secondary small mb-2">Mediana</p>
+                <p class="text-secondary small fst-italic mb-3">Segura para llevar a tu ave al vet.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$45.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Transportadora Aves', 45000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="cortauas aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-scissors"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Higiene</span>
+                <h3 class="h6 fw-bold mb-1">Cortaúñas Aves</h3>
+                <p class="text-secondary small mb-2">Acero inoxidable</p>
+                <p class="text-secondary small fst-italic mb-3">Diseño seguro para no lastimar.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$18.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Cortaúñas Aves', 18000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 producto-item" data-nombre="desparasitante aves" data-categoria="aves">
+              <div class="card-soft h-100 p-4 d-flex flex-column">
+                <div class="product-icon mb-3"><i class="bi bi-capsule"></i></div>
+                <span class="badge badge-soft rounded-pill align-self-start mb-2">Aves · Salud</span>
+                <h3 class="h6 fw-bold mb-1">Desparasitante Aves</h3>
+                <p class="text-secondary small mb-2">Gotas 20ml</p>
+                <p class="text-secondary small fst-italic mb-3">Protección interna y externa.</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                  <span class="fw-bold text-brand fs-5">$22.000</span>
+                  <button class="btn btn-brand btn-sm rounded-pill px-3" onclick="agregarAlCarrito('Desparasitante Aves', 22000)"><i class="bi bi-plus-lg me-1"></i>Añadir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CÓMO FUNCIONA ================= -->
+    <section class="py-5">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Cómo <span class="text-gradient">funciona</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Pedir para tu mascota nunca fue tan fácil</p>
+        </div>
+
+        <div class="row g-4 pasos-container">
+          <div class="col-md-6 col-lg-3">
+            <div class="paso-card text-center p-4 h-100">
+              <div class="paso-numero mx-auto mb-3">1</div>
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-shop"></i></div>
+              <h4 class="h6 fw-bold">Elige</h4>
+              <p class="text-secondary small mb-0">Explora productos de nuestras tiendas aliadas.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="paso-card text-center p-4 h-100">
+              <div class="paso-numero mx-auto mb-3">2</div>
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-cart-check"></i></div>
+              <h4 class="h6 fw-bold">Confirma</h4>
+              <p class="text-secondary small mb-0">Realiza tu pedido en un solo clic.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="paso-card text-center p-4 h-100">
+              <div class="paso-numero mx-auto mb-3">3</div>
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-geo-alt"></i></div>
+              <h4 class="h6 fw-bold">Sigue</h4>
+              <p class="text-secondary small mb-0">Rastrea tu entrega en tiempo real.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="paso-card text-center p-4 h-100">
+              <div class="paso-numero mx-auto mb-3">4</div>
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-house-heart"></i></div>
+              <h4 class="h6 fw-bold">Recibe</h4>
+              <p class="text-secondary small mb-0">En la puerta de tu casa en 30 minutos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-4 justify-content-center">
+          <div class="col-lg-6">
+            <div class="card-soft h-100 p-4 p-lg-5">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="icon-circle"><i class="bi bi-shield-heart"></i></div>
+                <h3 class="h4 fw-bold mb-0">Compromiso con tu mascota</h3>
+              </div>
+              <p class="text-secondary">Sabemos que tu mascota es parte de la familia. Cada entrega está pensada para su bienestar y tu tranquilidad.</p>
+              <ul class="feature-list">
+                <li><i class="bi bi-check-circle-fill"></i> Productos frescos y en óptimas condiciones</li>
+                <li><i class="bi bi-check-circle-fill"></i> Envíos con cuidado y protección</li>
+                <li><i class="bi bi-check-circle-fill"></i> Tiendas verificadas y confiables</li>
+                <li><i class="bi bi-check-circle-fill"></i> Atención al cliente 24/7</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card-soft h-100 p-4 p-lg-5 bg-brand-soft border-0">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="icon-circle"><i class="bi bi-piggy-bank"></i></div>
+                <h3 class="h4 fw-bold mb-0">Sin planes, sin complicaciones</h3>
+              </div>
+              <p class="text-secondary">En Huellitas no creemos en suscripciones obligatorias. Pides cuando lo necesitas, pagas solo lo que consumes y listo.</p>
+              <ul class="feature-list">
+                <li><i class="bi bi-check-circle-fill"></i> Sin mensualidades</li>
+                <li><i class="bi bi-check-circle-fill"></i> Sin contratos</li>
+                <li><i class="bi bi-check-circle-fill"></i> Envío express siempre disponible</li>
+                <li><i class="bi bi-check-circle-fill"></i> Precios claros desde el inicio</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TIENDAS ALIADAS ================= -->
+    <section id="tiendas" class="py-5 bg-white border-top border-bottom">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Tiendas <span class="text-gradient">aliadas</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Trabajamos con las mejores marcas y tiendas especializadas</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card-soft h-100 p-4 text-center d-flex flex-column align-items-center justify-content-center">
+              <div class="store-logo mb-3"><i class="bi bi-shop"></i></div>
+              <h3 class="h6 fw-bold mb-1">PetMax</h3>
+              <p class="text-secondary small mb-2">Alimentos y accesorios</p>
+              <span class="badge badge-soft rounded-pill"><i class="bi bi-patch-check-fill me-1"></i>Verificada</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card-soft h-100 p-4 text-center d-flex flex-column align-items-center justify-content-center">
+              <div class="store-logo mb-3"><i class="bi bi-heart-pulse"></i></div>
+              <h3 class="h6 fw-bold mb-1">VetCare</h3>
+              <p class="text-secondary small mb-2">Salud y bienestar</p>
+              <span class="badge badge-soft rounded-pill"><i class="bi bi-patch-check-fill me-1"></i>Verificada</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card-soft h-100 p-4 text-center d-flex flex-column align-items-center justify-content-center">
+              <div class="store-logo mb-3"><i class="bi bi-bag-heart"></i></div>
+              <h3 class="h6 fw-bold mb-1">Animal Love</h3>
+              <p class="text-secondary small mb-2">Juguetes y confort</p>
+              <span class="badge badge-soft rounded-pill"><i class="bi bi-patch-check-fill me-1"></i>Verificada</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card-soft h-100 p-4 text-center d-flex flex-column align-items-center justify-content-center">
+              <div class="store-logo mb-3"><i class="bi bi-basket"></i></div>
+              <h3 class="h6 fw-bold mb-1">NutriPet</h3>
+              <p class="text-secondary small mb-2">Nutrición especializada</p>
+              <span class="badge badge-soft rounded-pill"><i class="bi bi-patch-check-fill me-1"></i>Verificada</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <p class="text-secondary mb-3">¿Tienes una tienda de mascotas y quieres ser aliado?</p>
+          <a href="#contacto" class="btn btn-brand rounded-pill px-4"><i class="bi bi-handshake me-2"></i>Quiero ser aliado</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MASCOTAS PERDIDAS ================= -->
+    <section id="perdidas" class="py-5">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Mascotas <span class="text-gradient">perdidas</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Ayúdanos a reunir a estas mascotas con sus familias</p>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-9">
+            <div class="card-soft p-4 text-center bg-brand-soft border-0">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-megaphone-fill"></i></div>
+              <h3 class="h5 fw-bold mb-2">¿Perdiste a tu mascota?</h3>
+              <p class="text-secondary mb-3">Publica un anuncio gratis y ayuda a que más personas la vean. Juntos podemos traerla de vuelta a casa.</p>
+              <a href="registro.html" class="btn btn-brand rounded-pill px-4"><i class="bi bi-plus-circle me-2"></i>Publicar anuncio</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <button class="btn btn-filtro active" data-filtro="todos" onclick="filtrarMascotas('todos', this)">Todas</button>
+          <button class="btn btn-filtro" data-filtro="perro" onclick="filtrarMascotas('perro', this)">Perros</button>
+          <button class="btn btn-filtro" data-filtro="gato" onclick="filtrarMascotas('gato', this)">Gatos</button>
+        </div>
+
+        <div class="row g-4" id="gridMascotas">
+          <!-- Se llena dinámicamente con JavaScript desde localStorage -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ADOPCIÓN ================= -->
+    <section id="adopcion" class="py-5 bg-white border-top border-bottom">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Dale un hogar, <span class="text-gradient">cambia una vida</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Estas mascotas buscan una familia que las quiera para siempre</p>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-9">
+            <div class="card-soft p-4 text-center bg-brand-soft border-0">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-house-heart-fill"></i></div>
+              <h3 class="h5 fw-bold mb-2">¿Tienes una mascota para dar en adopción?</h3>
+              <p class="text-secondary mb-3">Publícala gratis y ayúdala a encontrar un hogar lleno de amor.</p>
+              <a href="registro.html" class="btn btn-brand rounded-pill px-4"><i class="bi bi-plus-circle me-2"></i>Publicar en adopción</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <button class="btn btn-filtro active" data-filtro-adopcion="todos" onclick="filtrarAdopciones('todos', this)">Todas</button>
+          <button class="btn btn-filtro" data-filtro-adopcion="perro" onclick="filtrarAdopciones('perro', this)">Perros</button>
+          <button class="btn btn-filtro" data-filtro-adopcion="gato" onclick="filtrarAdopciones('gato', this)">Gatos</button>
+        </div>
+
+        <div class="row g-4" id="gridAdopciones">
+          <div class="col-md-6 col-lg-4 adopcion-item" data-tipo="perro" data-demo="true">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="adopcion-img mb-3">
+                <img src="img/adopcion-1.jpg" alt="Cachorro en adopción" onerror="this.src='https://placehold.co/400x300/25a35a/ffffff?text=Adopci%C3%B3n+1';">
+                <span class="adopcion-badge bg-success text-white rounded-pill">EN ADOPCIÓN</span>
+              </div>
+              <h3 class="h5 fw-bold mb-1">Canela</h3>
+              <p class="text-secondary small mb-2">Mestiza · Hembra · 8 meses</p>
+              <p class="text-secondary small fst-italic mb-3">Juguetona, cariñosa y con todas sus vacunas al día. Ideal para familias activas.</p>
+              <a href="https://wa.me/573135164888?text=Hola,%20me%20interesa%20adoptar%20a%20Canela" target="_blank" rel="noopener" class="btn btn-brand rounded-pill mt-auto"><i class="bi bi-whatsapp me-2"></i>Quiero adoptarla</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 adopcion-item" data-tipo="gato" data-demo="true">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="adopcion-img mb-3">
+                <img src="img/adopcion-2.jpg" alt="Gato en adopción" onerror="this.src='https://placehold.co/400x300/25a35a/ffffff?text=Adopci%C3%B3n+2';">
+                <span class="adopcion-badge bg-success text-white rounded-pill">EN ADOPCIÓN</span>
+              </div>
+              <h3 class="h5 fw-bold mb-1">Tom</h3>
+              <p class="text-secondary small mb-2">Criollo · Macho · 1 año</p>
+              <p class="text-secondary small fst-italic mb-3">Tranquilo, esterilizado y muy limpio. Se lleva bien con niños y otras mascotas.</p>
+              <a href="https://wa.me/573135164888?text=Hola,%20me%20interesa%20adoptar%20a%20Tom" target="_blank" rel="noopener" class="btn btn-brand rounded-pill mt-auto"><i class="bi bi-whatsapp me-2"></i>Quiero adoptarlo</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 adopcion-item" data-tipo="perro" data-demo="true">
+            <div class="card-soft h-100 p-4 d-flex flex-column">
+              <div class="adopcion-img mb-3">
+                <img src="img/adopcion-3.jpg" alt="Perro en adopción" onerror="this.src='https://placehold.co/400x300/25a35a/ffffff?text=Adopci%C3%B3n+3';">
+                <span class="adopcion-badge bg-success text-white rounded-pill">EN ADOPCIÓN</span>
+              </div>
+              <h3 class="h5 fw-bold mb-1">Nube</h3>
+              <p class="text-secondary small mb-2">Labrador mix · Hembra · 2 años</p>
+              <p class="text-secondary small fst-italic mb-3">Rescatada de la calle, busca una familia paciente que le dé mucho amor.</p>
+              <a href="https://wa.me/573135164888?text=Hola,%20me%20interesa%20adoptar%20a%20Nube" target="_blank" rel="noopener" class="btn btn-brand rounded-pill mt-auto"><i class="bi bi-whatsapp me-2"></i>Quiero adoptarla</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DONACIONES ================= -->
+    <section id="donaciones" class="py-5">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Red de <span class="text-gradient">Donaciones</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Dona o recibe ayuda para mascotas y refugios</p>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-9">
+            <div class="card-soft p-4 text-center bg-brand-soft border-0">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-gift-fill"></i></div>
+              <h3 class="h5 fw-bold mb-2">¿Quieres donar o necesitas ayuda?</h3>
+              <p class="text-secondary mb-3">Publica tu oferta o solicitud. Juntos podemos ayudar a más peluditos.</p>
+              <a href="registro.html" class="btn btn-brand rounded-pill px-4"><i class="bi bi-plus-circle me-2"></i>Publicar donación</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <button class="btn btn-filtro active" data-filtro-donacion="todos" onclick="filtrarDonaciones('todos', this)">Todas</button>
+          <button class="btn btn-filtro" data-filtro-donacion="ofrezco" onclick="filtrarDonaciones('ofrezco', this)">Ofrecen</button>
+          <button class="btn btn-filtro" data-filtro-donacion="necesito" onclick="filtrarDonaciones('necesito', this)">Necesitan</button>
+        </div>
+
+        <div class="row g-4" id="gridDonaciones">
+          <!-- Se llena dinámicamente con JavaScript desde localStorage -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIOS ================= -->
+    <section id="testimonios" class="py-5 bg-white border-top border-bottom">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Lo que dicen <span class="text-gradient">nuestros clientes</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Miles de mascotas felices y dueños tranquilos</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="fst-italic text-secondary">"Pedí alimento y juguetes un domingo por la noche y llegaron en 25 minutos. Nunca había visto un servicio tan rápido."</p>
+              <div class="d-flex align-items-center gap-3 mt-3">
+                <div class="avatar">MR</div>
+                <div>
+                  <div class="fw-semibold small">María Restrepo</div>
+                  <div class="text-muted" style="font-size:.75rem;">Dueña de Nala · Bogotá</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="fst-italic text-secondary">"El seguimiento en vivo me da mucha tranquilidad. Sé exactamente cuándo llega el pedido de mi gato."</p>
+              <div class="d-flex align-items-center gap-3 mt-3">
+                <div class="avatar">JC</div>
+                <div>
+                  <div class="fw-semibold small">Julián Cárdenas</div>
+                  <div class="text-muted" style="font-size:.75rem;">Dueño de Milo · Medellín</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-soft h-100 p-4">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </div>
+              <p class="fst-italic text-secondary">"Los productos siempre llegan impecables y bien empacados. Se nota el cuidado con el que trabajan."</p>
+              <div class="d-flex align-items-center gap-3 mt-3">
+                <div class="avatar">LP</div>
+                <div>
+                  <div class="fw-semibold small">Laura Peña</div>
+                  <div class="text-muted" style="font-size:.75rem;">Dueña de Rocky · Cali</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section id="contacto" class="py-5">
+      <div class="container py-lg-4">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-6">Hablemos de tu <span class="text-gradient">mascota</span></h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-0">Escríbenos y te responderemos lo antes posible</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-5">
+            <div class="card-soft h-100 p-4 p-lg-5">
+              <h3 class="h5 fw-bold mb-4">Información de contacto</h3>
+              <div class="d-flex align-items-start gap-3 mb-4">
+                <div class="icon-circle" style="width:46px;height:46px;font-size:1.1rem;"><i class="bi bi-telephone"></i></div>
+                <div>
+                  <div class="fw-semibold small">Teléfono / WhatsApp</div>
+                  <a href="tel:+573000000000" class="text-decoration-none text-brand">+57 300 000 0000</a>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3 mb-4">
+                <div class="icon-circle" style="width:46px;height:46px;font-size:1.1rem;"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <div class="fw-semibold small">Correo electrónico</div>
+                  <a href="mailto:contacto@huellitas.com" class="text-decoration-none text-brand">contacto@huellitas.com</a>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3 mb-4">
+                <div class="icon-circle" style="width:46px;height:46px;font-size:1.1rem;"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <div class="fw-semibold small">Cobertura</div>
+                  <span class="text-secondary small">Bogotá, Medellín y Cali</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle" style="width:46px;height:46px;font-size:1.1rem;"><i class="bi bi-clock-history"></i></div>
+                <div>
+                  <div class="fw-semibold small">Horario de atención</div>
+                  <span class="text-secondary small">Lun a Dom · 7:00 a.m. – 10:00 p.m.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="card-soft h-100 p-4 p-lg-5">
+              <h3 class="h5 fw-bold mb-4">Envíanos un mensaje</h3>
+
+              <div id="formExito" class="alert alert-success rounded-3 d-none" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                ¡Gracias! Tu mensaje fue enviado. Te contactaremos pronto.
+              </div>
+
+              <form id="formContacto" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-6">
+                  <label for="nombre" class="form-label small fw-semibold">Nombre completo</label>
+                  <input type="text" class="form-control rounded-3" id="nombre" name="nombre" placeholder="Tu nombre" required minlength="3">
+                  <div class="invalid-feedback">Ingresa tu nombre (mínimo 3 caracteres).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="correo" class="form-label small fw-semibold">Correo electrónico</label>
+                  <input type="email" class="form-control rounded-3" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+                  <div class="invalid-feedback">Ingresa un correo válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefono" class="form-label small fw-semibold">Teléfono</label>
+                  <input type="tel" class="form-control rounded-3" id="telefono" name="telefono" placeholder="300 000 0000">
+                </div>
+                <div class="col-md-6">
+                  <label for="mascota" class="form-label small fw-semibold">Tipo de mascota</label>
+                  <select class="form-select rounded-3" id="mascota" name="mascota">
+                    <option value="" selected>Selecciona una opción</option>
+                    <option>Perro</option>
+                    <option>Gato</option>
+                    <option>Ave</option>
+                    <option>Roedor</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="mensaje" class="form-label small fw-semibold">Mensaje</label>
+                  <textarea class="form-control rounded-3" id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos qué necesitas para tu mascota" required minlength="10"></textarea>
+                  <div class="invalid-feedback">Cuéntanos un poco más (mínimo 10 caracteres).</div>
+                </div>
+                <div class="col-12 d-grid d-sm-flex gap-3">
+                  <button type="submit" class="btn btn-brand btn-lg rounded-pill px-4"><i class="bi bi-send me-2"></i>Enviar mensaje</button>
+                  <a href="registro.html" class="btn btn-outline-brand btn-lg rounded-pill px-4">Crear cuenta</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA FINAL ================= -->
+    <section class="py-5 bg-white border-top border-bottom">
+      <div class="container">
+        <div class="cta p-4 p-lg-5 text-center">
+          <div class="icon-circle mx-auto mb-3"><i class="bi bi-paw-fill"></i></div>
+          <h2 class="fw-bold display-6 mb-2">¿Listo para consentir a tu mascota?</h2>
+          <p class="text-secondary col-lg-7 mx-auto mb-4">Regístrate gratis y recibe tu primer envío con prioridad express.</p>
+          <a href="registro.html" class="btn btn-brand btn-lg rounded-pill px-5"><i class="bi bi-person-plus me-2"></i>Registrarme gratis</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="pt-5 pb-4 mt-auto">
+    <div class="container">
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="img/logoH.png" alt="Logo Huellitas" class="rounded-circle" style="width:40px;height:40px;object-fit:cover;">
+            <span class="fw-bold fs-5 text-white">Huellitas</span>
+          </div>
+          <p class="small mb-3" style="max-width:22rem;">Entregas especializadas para mascotas. Rápidas, seguras y con el cuidado que tu mejor amigo merece.</p>
+          <div class="d-flex gap-2">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/573135164888?text=Hola%20Huellitas,%20vengo%20desde%20su%20p%C3%A1gina%20web" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h4 class="h6 fw-bold text-white mb-3">Empresa</h4>
+          <ul class="list-unstyled small d-grid gap-2 mb-0">
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#objetivos">Objetivos</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h4 class="h6 fw-bold text-white mb-3">Servicio</h4>
+          <ul class="list-unstyled small d-grid gap-2 mb-0">
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#tiendas">Tiendas aliadas</a></li>
+            <li><a href="#perdidas">Mascotas perdidas</a></li>
+            <li><a href="#adopcion">Adopción</a></li>
+            <li><a href="#donaciones">Donaciones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4">
+          <h4 class="h6 fw-bold text-white mb-3">Recibe novedades</h4>
+          <p class="small">Promociones y consejos para el cuidado de tu mascota.</p>
+          <form class="d-flex gap-2" action="#" method="post" onsubmit="event.preventDefault();this.reset();alert('¡Gracias por suscribirte!');">
+            <label for="newsletter" class="visually-hidden">Correo electrónico</label>
+            <input type="email" id="newsletter" class="form-control rounded-pill" placeholder="tucorreo@ejemplo.com" required>
+            <button type="submit" class="btn btn-brand rounded-pill px-3" aria-label="Suscribirse"><i class="bi bi-send"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <hr class="border-secondary opacity-25">
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small">
+        <span>&copy; 2025 Huellitas · Todos los derechos reservados.</span>
+        <div class="d-flex gap-3">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos y condiciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CARRITO OFFCANVAS ================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas" aria-labelledby="carritoLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" id="carritoLabel"><i class="bi bi-bag-heart text-brand me-2"></i>Tu carrito</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="carritoVacio" class="text-center my-auto">
+        <div class="icon-circle mx-auto mb-3"><i class="bi bi-bag"></i></div>
+        <p class="text-secondary mb-0">Tu carrito está vacío.</p>
+      </div>
+      <ul id="carritoLista" class="list-unstyled mb-0"></ul>
+      <div id="carritoFooter" class="mt-auto pt-3 border-top d-none">
+        <div class="d-flex justify-content-between mb-2">
+          <span class="fw-semibold">Total:</span>
+          <span class="fw-bold text-brand" id="carritoTotal">$0</span>
+        </div>
+        <button class="btn btn-brand rounded-pill w-100" onclick="checkout()"><i class="bi bi-credit-card me-2"></i>Finalizar compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= WHATSAPP FLOTANTE ================= -->
+  <a href="https://wa.me/573135164888?text=Hola%20Huellitas,%20quiero%20hacer%20un%20pedido" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="sesion.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

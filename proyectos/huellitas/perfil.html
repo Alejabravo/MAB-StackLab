@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi perfil · Huellitas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        <img src="img/logoH.png" alt="Logo Huellitas" class="rounded-circle"
+             style="width:42px;height:42px;object-fit:cover;">
+        <span class="fs-5">
+          <span class="text-gradient">Huellitas</span>
+          <span class="d-block fw-normal text-muted" style="font-size:.7rem;letter-spacing:.08em;">
+            ENTREGAS PARA MASCOTAS
+          </span>
+        </span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a href="index.html" class="btn btn-outline-brand rounded-pill px-3">
+          <i class="bi bi-house me-1"></i> Inicio
+        </a>
+        <a href="registro.html" class="btn btn-brand rounded-pill px-3 d-none" id="btnRegistrarse">
+          <i class="bi bi-person-plus me-1"></i> Registrarse
+        </a>
+        <div class="dropdown d-none" id="menuUsuario">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+             href="#" role="button" data-bs-toggle="dropdown">
+            <img id="avatarNavbar" src="" alt="Avatar" class="rounded-circle"
+                 style="width:32px;height:32px;object-fit:cover;display:none;">
+            <span id="nombreNavbar" class="fw-semibold small">Usuario</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+            <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-person-circle me-2 text-brand"></i>Mi perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="cerrarSesion(event)"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow-1 py-5">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <h1 class="fw-bold display-6 mb-2">Mi <span class="text-gradient">perfil</span></h1>
+        <p class="text-secondary mb-0">Administra tus datos y los de tus mascotas</p>
+      </div>
+
+      <div id="avisoGuardado" class="alert alert-success rounded-3 d-none mb-4" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>Cambios guardados correctamente.
+      </div>
+
+      <div class="row g-4 justify-content-center">
+
+        <!-- DATOS PERSONALES -->
+        <div class="col-lg-5">
+          <div class="card-soft p-4 p-lg-5 h-100">
+            <h2 class="h5 fw-bold mb-4">Datos personales</h2>
+
+            <div class="text-center mb-4">
+              <label for="fotoPerfil" style="cursor:pointer;">
+                <img id="previewFotoPerfil"
+                     src="https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%91%A4"
+                     alt="Foto de perfil" class="rounded-circle mb-2"
+                     style="width:120px;height:120px;object-fit:cover;border:4px solid var(--brand-soft);">
+                <div class="small text-brand fw-semibold">
+                  <i class="bi bi-camera me-1"></i>Cambiar foto
+                </div>
+              </label>
+              <input type="file" id="fotoPerfil" accept="image/*" class="d-none">
+            </div>
+
+            <form id="formPerfil" class="row g-3">
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Nombre completo</label>
+                <input type="text" class="form-control rounded-3" id="perfilNombre" required minlength="3">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Correo</label>
+                <input type="email" class="form-control rounded-3" id="perfilCorreo" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Teléfono</label>
+                <input type="tel" class="form-control rounded-3" id="perfilTelefono">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Ciudad</label>
+                <input type="text" class="form-control rounded-3" id="perfilCiudad">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Dirección</label>
+                <input type="text" class="form-control rounded-3" id="perfilDireccion">
+              </div>
+              <div class="col-12 pt-2">
+                <button type="submit" class="btn btn-brand rounded-pill w-100">
+                  <i class="bi bi-save me-2"></i>Guardar cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- MASCOTAS DEL USUARIO -->
+        <div class="col-lg-7">
+          <div class="card-soft p-4 p-lg-5 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <h2 class="h5 fw-bold mb-0">Mis mascotas</h2>
+              <button type="button" class="btn btn-brand btn-sm rounded-pill px-3"
+                      onclick="abrirModalMascota()">
+                <i class="bi bi-plus-lg me-1"></i>Agregar mascota
+              </button>
+            </div>
+
+            <div id="listaMascotas" class="row g-3"></div>
+
+            <div id="sinMascotas" class="text-center text-secondary py-5">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-heart"></i></div>
+              <p class="mb-0">Aún no has agregado mascotas.</p>
+              <p class="small">Agrega a tus peluditos para personalizar tu experiencia.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MASCOTAS PERDIDAS PUBLICADAS -->
+        <div class="col-12">
+          <div class="card-soft p-4 p-lg-5">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <div>
+                <h2 class="h5 fw-bold mb-1">
+                  <i class="bi bi-megaphone text-brand me-2"></i>Mis mascotas perdidas
+                </h2>
+                <p class="text-secondary small mb-0">Publica un anuncio para ayudar a encontrar a tu mascota</p>
+              </div>
+              <button type="button" class="btn btn-brand rounded-pill px-3" onclick="abrirModalPerdida()">
+                <i class="bi bi-plus-circle me-1"></i>Publicar mascota perdida
+              </button>
+            </div>
+
+            <div id="listaPerdidas" class="row g-3"></div>
+
+            <div id="sinPerdidas" class="text-center text-secondary py-5">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-search-heart"></i></div>
+              <p class="mb-0">Aún no has publicado mascotas perdidas.</p>
+              <p class="small">Publica un anuncio para que más personas te ayuden a encontrarla.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MASCOTAS EN ADOPCIÓN -->
+        <div class="col-12">
+          <div class="card-soft p-4 p-lg-5">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <div>
+                <h2 class="h5 fw-bold mb-1">
+                  <i class="bi bi-house-heart text-brand me-2"></i>Mis mascotas en adopción
+                </h2>
+                <p class="text-secondary small mb-0">Ayuda a una mascota a encontrar su hogar definitivo</p>
+              </div>
+              <button type="button" class="btn btn-brand rounded-pill px-3" onclick="abrirModalAdopcion()">
+                <i class="bi bi-plus-circle me-1"></i>Publicar en adopción
+              </button>
+            </div>
+
+            <div id="listaAdopciones" class="row g-3"></div>
+
+            <div id="sinAdopciones" class="text-center text-secondary py-5">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-house-heart"></i></div>
+              <p class="mb-0">Aún no has publicado mascotas en adopción.</p>
+              <p class="small">Ayuda a una mascota a encontrar su familia definitiva.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DONACIONES -->
+        <div class="col-12">
+          <div class="card-soft p-4 p-lg-5">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <div>
+                <h2 class="h5 fw-bold mb-1">
+                  <i class="bi bi-gift text-brand me-2"></i>Mis donaciones
+                </h2>
+                <p class="text-secondary small mb-0">Ofrece o solicita donaciones para mascotas y refugios</p>
+              </div>
+              <button type="button" class="btn btn-brand rounded-pill px-3" onclick="abrirModalDonacion()">
+                <i class="bi bi-plus-circle me-1"></i>Publicar donación
+              </button>
+            </div>
+
+            <div id="listaDonaciones" class="row g-3"></div>
+
+            <div id="sinDonaciones" class="text-center text-secondary py-5">
+              <div class="icon-circle mx-auto mb-3"><i class="bi bi-gift"></i></div>
+              <p class="mb-0">Aún no has publicado donaciones.</p>
+              <p class="small">Ofrece alimento, medicamentos o juguetes, o solicita ayuda para tu mascota.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="pt-4 pb-3 mt-auto">
+    <div class="container text-center small">
+      <span>&copy; 2025 Huellitas · Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL AGREGAR/EDITAR MASCOTA ================= -->
+  <div class="modal fade" id="modalMascota" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="tituloModalMascota">
+            <i class="bi bi-heart-fill text-brand me-2"></i>Agregar mascota
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formMascota">
+            <div class="text-center mb-3">
+              <label for="fotoMascota" style="cursor:pointer;">
+                <img id="previewFotoMascota"
+                     src="https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%90%BE"
+                     alt="Foto mascota" class="rounded-circle"
+                     style="width:120px;height:120px;object-fit:cover;border:4px solid var(--brand-soft);">
+                <div class="small text-brand fw-semibold mt-1">
+                  <i class="bi bi-camera me-1"></i>Subir foto
+                </div>
+              </label>
+              <input type="file" id="fotoMascota" accept="image/*" class="d-none">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Nombre *</label>
+              <input type="text" class="form-control rounded-3" id="mascotaNombre" required>
+            </div>
+
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Tipo *</label>
+                <select class="form-select rounded-3" id="mascotaTipo" required>
+                  <option value="">Selecciona</option>
+                  <option>Perro</option>
+                  <option>Gato</option>
+                  <option>Ave</option>
+                  <option>Roedor</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Edad</label>
+                <input type="text" class="form-control rounded-3" id="mascotaEdad" placeholder="Ej: 2 años">
+              </div>
+            </div>
+
+            <div class="row g-2 mt-1">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Peso (kg) *</label>
+                <input type="number" step="0.1" min="0.5" max="100" class="form-control rounded-3"
+                       id="mascotaPeso" placeholder="Ej: 4.5" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Actividad</label>
+                <select class="form-select rounded-3" id="mascotaActividad">
+                  <option value="baja">Baja</option>
+                  <option value="media" selected>Media</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label small fw-semibold">Notas / Raza</label>
+              <textarea class="form-control rounded-3" id="mascotaNotas" rows="2"
+                        placeholder="Raza, color, personalidad..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4"
+                  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-brand rounded-pill px-4" onclick="guardarMascota()">
+            <i class="bi bi-check-lg me-1"></i><span id="textoBtnGuardar">Guardar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PUBLICAR MASCOTA PERDIDA ================= -->
+  <div class="modal fade" id="modalPerdida" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-megaphone-fill text-brand me-2"></i>Publicar mascota perdida
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formPerdida">
+            <div class="text-center mb-3">
+              <label for="fotoPerdida" style="cursor:pointer;">
+                <img id="previewFotoPerdida"
+                     src="https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%93%B7"
+                     alt="Foto mascota perdida" class="rounded-3"
+                     style="width:150px;height:150px;object-fit:cover;border:4px solid var(--brand-soft);">
+                <div class="small text-brand fw-semibold mt-1">
+                  <i class="bi bi-camera me-1"></i>Subir foto
+                </div>
+              </label>
+              <input type="file" id="fotoPerdida" accept="image/*" class="d-none">
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Nombre *</label>
+                <input type="text" class="form-control rounded-3" id="perdidaNombre" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Tipo *</label>
+                <select class="form-select rounded-3" id="perdidaTipo" required>
+                  <option value="">Selecciona</option>
+                  <option>Perro</option>
+                  <option>Gato</option>
+                  <option>Ave</option>
+                  <option>Roedor</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Raza</label>
+                <input type="text" class="form-control rounded-3" id="perdidaRaza">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Sexo</label>
+                <select class="form-select rounded-3" id="perdidaSexo">
+                  <option value="">Selecciona</option>
+                  <option>Macho</option>
+                  <option>Hembra</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Edad</label>
+                <input type="text" class="form-control rounded-3" id="perdidaEdad" placeholder="Ej: 3 años">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Color</label>
+                <input type="text" class="form-control rounded-3" id="perdidaColor">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Fecha de pérdida *</label>
+                <input type="date" class="form-control rounded-3" id="perdidaFecha" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Teléfono de contacto *</label>
+                <input type="tel" class="form-control rounded-3" id="perdidaTelefono" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Lugar de pérdida *</label>
+                <input type="text" class="form-control rounded-3" id="perdidaLugar" placeholder="Barrio, ciudad" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Descripción / señas particulares</label>
+                <textarea class="form-control rounded-3" id="perdidaDescripcion" rows="2"
+                          placeholder="Collar, cicatrices, comportamiento..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4"
+                  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-brand rounded-pill px-4" onclick="guardarPerdida()">
+            <i class="bi bi-check-lg me-1"></i>Publicar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PUBLICAR ADOPCIÓN ================= -->
+  <div class="modal fade" id="modalAdopcion" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-house-heart-fill text-brand me-2"></i>Publicar mascota en adopción
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAdopcion">
+            <div class="text-center mb-3">
+              <label for="fotoAdopcion" style="cursor:pointer;">
+                <img id="previewFotoAdopcion"
+                     src="https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%8F%A0"
+                     alt="Foto mascota adopción" class="rounded-3"
+                     style="width:150px;height:150px;object-fit:cover;border:4px solid var(--brand-soft);">
+                <div class="small text-brand fw-semibold mt-1">
+                  <i class="bi bi-camera me-1"></i>Subir foto
+                </div>
+              </label>
+              <input type="file" id="fotoAdopcion" accept="image/*" class="d-none">
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Nombre *</label>
+                <input type="text" class="form-control rounded-3" id="adopcionNombre" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Tipo *</label>
+                <select class="form-select rounded-3" id="adopcionTipo" required>
+                  <option value="">Selecciona</option>
+                  <option>Perro</option>
+                  <option>Gato</option>
+                  <option>Ave</option>
+                  <option>Roedor</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Raza</label>
+                <input type="text" class="form-control rounded-3" id="adopcionRaza">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Sexo</label>
+                <select class="form-select rounded-3" id="adopcionSexo">
+                  <option value="">Selecciona</option>
+                  <option>Macho</option>
+                  <option>Hembra</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Edad</label>
+                <input type="text" class="form-control rounded-3" id="adopcionEdad" placeholder="Ej: 8 meses">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Ciudad *</label>
+                <input type="text" class="form-control rounded-3" id="adopcionCiudad" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Esterilizado</label>
+                <select class="form-select rounded-3" id="adopcionEsterilizado">
+                  <option value="">No especificado</option>
+                  <option>Sí</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Vacunas</label>
+                <select class="form-select rounded-3" id="adopcionVacunas">
+                  <option value="">No especificado</option>
+                  <option>Al día</option>
+                  <option>Parciales</option>
+                  <option>Sin vacunas</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Teléfono de contacto *</label>
+                <input type="tel" class="form-control rounded-3" id="adopcionTelefono" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Descripción / personalidad</label>
+                <textarea class="form-control rounded-3" id="adopcionDescripcion" rows="2"
+                          placeholder="Personalidad, historia, cuidados especiales..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4"
+                  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-brand rounded-pill px-4" onclick="guardarAdopcion()">
+            <i class="bi bi-check-lg me-1"></i>Publicar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PUBLICAR DONACIÓN ================= -->
+  <div class="modal fade" id="modalDonacion" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-gift-fill text-brand me-2"></i>Publicar donación
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formDonacion">
+            <div class="text-center mb-3">
+              <label for="fotoDonacion" style="cursor:pointer;">
+                <img id="previewFotoDonacion"
+                     src="https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%8E%81"
+                     alt="Foto donación" class="rounded-3"
+                     style="width:150px;height:150px;object-fit:cover;border:4px solid var(--brand-soft);">
+                <div class="small text-brand fw-semibold mt-1">
+                  <i class="bi bi-camera me-1"></i>Subir foto (opcional)
+                </div>
+              </label>
+              <input type="file" id="fotoDonacion" accept="image/*" class="d-none">
+            </div>
+
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Título de la donación *</label>
+                <input type="text" class="form-control rounded-3" id="donacionTitulo"
+                       placeholder="Ej: Alimento para perros de refugio" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Modalidad *</label>
+                <select class="form-select rounded-3" id="donacionModalidad" required>
+                  <option value="ofrezco" selected>Ofrezco donación</option>
+                  <option value="necesito">Necesito donación</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Tipo de donación *</label>
+                <select class="form-select rounded-3" id="donacionTipo" required>
+                  <option value="">Selecciona</option>
+                  <option>Alimento</option>
+                  <option>Medicamentos</option>
+                  <option>Juguetes / Accesorios</option>
+                  <option>Dinero</option>
+                  <option>Servicios (veterinaria, peluquería)</option>
+                  <option>Otros</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Beneficiario</label>
+                <input type="text" class="form-control rounded-3" id="donacionBeneficiario"
+                       placeholder="Ej: Refugio Patitas, mi perro Max...">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Ciudad *</label>
+                <input type="text" class="form-control rounded-3" id="donacionCiudad" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Teléfono de contacto *</label>
+                <input type="tel" class="form-control rounded-3" id="donacionTelefono" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold">Descripción</label>
+                <textarea class="form-control rounded-3" id="donacionDescripcion" rows="3"
+                          placeholder="Detalles: cantidad, condición, cómo entregar, qué se necesita..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4"
+                  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-brand rounded-pill px-4" onclick="guardarDonacion()">
+            <i class="bi bi-check-lg me-1"></i>Publicar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="sesion.js"></script>
+  <script>
+    /* ---------- PROTECCIÓN ---------- */
+    if (!estaLogueado()) {
+      window.location.href = 'login.html';
+    }
+
+    let usuarioActual = obtenerUsuario() || {};
+    let fotoPerfilBase64 = usuarioActual.foto || '';
+    let fotoMascotaBase64 = '';
+    let fotoPerdidaBase64 = '';
+    let fotoAdopcionBase64 = '';
+    let fotoDonacionBase64 = '';
+    let mascotaEditandoId = null;
+    let modalMascotaObj = null;
+    let modalRecomendacionesObj = null;
+    let modalPerdidaObj = null;
+    let modalAdopcionObj = null;
+    let modalDonacionObj = null;
+
+    /* ---------- CARGAR DATOS ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('perfilNombre').value = usuarioActual.nombre || '';
+      document.getElementById('perfilCorreo').value = usuarioActual.correo || '';
+      document.getElementById('perfilTelefono').value = usuarioActual.telefono || '';
+      document.getElementById('perfilCiudad').value = usuarioActual.ciudad || '';
+      document.getElementById('perfilDireccion').value = usuarioActual.direccion || '';
+
+      if (usuarioActual.foto) {
+        document.getElementById('previewFotoPerfil').src = usuarioActual.foto;
+      }
+
+      modalMascotaObj = new bootstrap.Modal(document.getElementById('modalMascota'));
+      modalRecomendacionesObj = new bootstrap.Modal(document.getElementById('modalRecomendaciones'));
+      modalPerdidaObj = new bootstrap.Modal(document.getElementById('modalPerdida'));
+      modalAdopcionObj = new bootstrap.Modal(document.getElementById('modalAdopcion'));
+      modalDonacionObj = new bootstrap.Modal(document.getElementById('modalDonacion'));
+
+      renderizarMascotas();
+      renderizarPerdidas();
+      renderizarAdopciones();
+      renderizarDonaciones();
+
+      // Abrir automáticamente el modal correspondiente si venimos desde el index
+      if (window.location.hash === '#publicar-perdida') {
+        setTimeout(() => abrirModalPerdida(), 300);
+      }
+      if (window.location.hash === '#publicar-adopcion') {
+        setTimeout(() => abrirModalAdopcion(), 300);
+      }
+      if (window.location.hash === '#publicar-donacion') {
+        setTimeout(() => abrirModalDonacion(), 300);
+      }
+    });
+
+    /* ---------- ABRIR MODAL: AGREGAR MASCOTA ---------- */
+    function abrirModalMascota() {
+      mascotaEditandoId = null;
+      document.getElementById('formMascota').reset();
+      document.getElementById('previewFotoMascota').src =
+        'https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%90%BE';
+      document.getElementById('tituloModalMascota').innerHTML =
+        '<i class="bi bi-heart-fill text-brand me-2"></i>Agregar mascota';
+      document.getElementById('textoBtnGuardar').textContent = 'Guardar';
+      fotoMascotaBase64 = '';
+      modalMascotaObj.show();
+    }
+
+    /* ---------- ABRIR MODAL: EDITAR MASCOTA ---------- */
+    function abrirEditarMascota(id) {
+      const mascotas = obtenerMascotas();
+      const m = mascotas.find(x => x.id === id);
+      if (!m) return;
+
+      mascotaEditandoId = id;
+      document.getElementById('mascotaNombre').value = m.nombre || '';
+      document.getElementById('mascotaTipo').value = m.tipo || '';
+      document.getElementById('mascotaEdad').value = m.edad || '';
+      document.getElementById('mascotaPeso').value = m.peso || '';
+      document.getElementById('mascotaActividad').value = m.actividad || 'media';
+      document.getElementById('mascotaNotas').value = m.notas || '';
+
+      if (m.foto) {
+        document.getElementById('previewFotoMascota').src = m.foto;
+        fotoMascotaBase64 = m.foto;
+      } else {
+        document.getElementById('previewFotoMascota').src =
+          'https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%90%BE';
+        fotoMascotaBase64 = '';
+      }
+
+      document.getElementById('tituloModalMascota').innerHTML =
+        '<i class="bi bi-pencil-square text-brand me-2"></i>Editar mascota';
+      document.getElementById('textoBtnGuardar').textContent = 'Guardar cambios';
+      modalMascotaObj.show();
+    }
+
+    /* ---------- FOTO DE PERFIL ---------- */
+    document.getElementById('fotoPerfil').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const base64 = await comprimirImagen(file, 400, 0.8);
+        fotoPerfilBase64 = base64;
+        document.getElementById('previewFotoPerfil').src = base64;
+      } catch (err) {
+        alert('No se pudo cargar la imagen');
+      }
+    });
+
+    /* ---------- FOTO DE MASCOTA ---------- */
+    document.getElementById('fotoMascota').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const base64 = await comprimirImagen(file, 500, 0.8);
+        fotoMascotaBase64 = base64;
+        document.getElementById('previewFotoMascota').src = base64;
+      } catch (err) {
+        alert('No se pudo cargar la imagen');
+      }
+    });
+
+    /* ---------- FOTO DE MASCOTA PERDIDA ---------- */
+    document.getElementById('fotoPerdida').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const base64 = await comprimirImagen(file, 600, 0.8);
+        fotoPerdidaBase64 = base64;
+        document.getElementById('previewFotoPerdida').src = base64;
+      } catch (err) {
+        alert('No se pudo cargar la imagen');
+      }
+    });
+
+    /* ---------- FOTO DE MASCOTA ADOPCIÓN ---------- */
+    document.getElementById('fotoAdopcion').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const base64 = await comprimirImagen(file, 600, 0.8);
+        fotoAdopcionBase64 = base64;
+        document.getElementById('previewFotoAdopcion').src = base64;
+      } catch (err) {
+        alert('No se pudo cargar la imagen');
+      }
+    });
+
+    /* ---------- FOTO DE DONACIÓN ---------- */
+    document.getElementById('fotoDonacion').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const base64 = await comprimirImagen(file, 600, 0.8);
+        fotoDonacionBase64 = base64;
+        document.getElementById('previewFotoDonacion').src = base64;
+      } catch (err) {
+        alert('No se pudo cargar la imagen');
+      }
+    });
+
+    /* ---------- GUARDAR PERFIL ---------- */
+    document.getElementById('formPerfil').addEventListener('submit', (e) => {
+      e.preventDefault();
+      usuarioActual.nombre = document.getElementById('perfilNombre').value;
+      usuarioActual.correo = document.getElementById('perfilCorreo').value;
+      usuarioActual.telefono = document.getElementById('perfilTelefono').value;
+      usuarioActual.ciudad = document.getElementById('perfilCiudad').value;
+      usuarioActual.direccion = document.getElementById('perfilDireccion').value;
+      usuarioActual.foto = fotoPerfilBase64;
+
+      guardarUsuario(usuarioActual);
+      if (typeof actualizarNavbar === 'function') actualizarNavbar();
+      mostrarAviso('Cambios guardados correctamente.');
+      renderizarPerdidas();
+      renderizarAdopciones();
+      renderizarDonaciones();
+    });
+
+    /* ---------- GUARDAR MASCOTA ---------- */
+    function guardarMascota() {
+      const nombre = document.getElementById('mascotaNombre').value.trim();
+      const tipo = document.getElementById('mascotaTipo').value;
+      const edad = document.getElementById('mascotaEdad').value.trim();
+      const peso = document.getElementById('mascotaPeso').value;
+      const actividad = document.getElementById('mascotaActividad').value;
+      const notas = document.getElementById('mascotaNotas').value.trim();
+
+      if (!nombre || !tipo || !peso) {
+        alert('Por favor completa nombre, tipo y peso.');
+        return;
+      }
+
+      const mascotas = obtenerMascotas();
+
+      if (mascotaEditandoId) {
+        const idx = mascotas.findIndex(x => x.id === mascotaEditandoId);
+        if (idx !== -1) {
+          mascotas[idx] = {
+            ...mascotas[idx],
+            nombre, tipo, edad, peso, actividad, notas,
+            foto: fotoMascotaBase64
+          };
+        }
+        guardarMascotas(mascotas);
+        modalMascotaObj.hide();
+        renderizarMascotas();
+        mostrarAviso('Mascota actualizada correctamente.');
+      } else {
+        mascotas.push({
+          id: Date.now(),
+          nombre, tipo, edad, peso, actividad, notas,
+          foto: fotoMascotaBase64
+        });
+        guardarMascotas(mascotas);
+        modalMascotaObj.hide();
+        renderizarMascotas();
+        mostrarAviso('Mascota agregada correctamente.');
+      }
+
+      mascotaEditandoId = null;
+      document.getElementById('formMascota').reset();
+      document.getElementById('previewFotoMascota').src =
+        'https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%90%BE';
+      fotoMascotaBase64 = '';
+    }
+
+    /* ---------- ELIMINAR MASCOTA ---------- */
+    function eliminarMascota(id) {
+      if (!confirm('¿Eliminar esta mascota?')) return;
+      const mascotas = obtenerMascotas().filter(m => m.id !== id);
+      guardarMascotas(mascotas);
+      renderizarMascotas();
+      mostrarAviso('Mascota eliminada.');
+    }
+
+    /* ---------- RENDERIZAR MASCOTAS ---------- */
+    function renderizarMascotas() {
+      const lista = document.getElementById('listaMascotas');
+      const vacio = document.getElementById('sinMascotas');
+      const mascotas = obtenerMascotas();
+
+      if (mascotas.length === 0) {
+        lista.innerHTML = '';
+        vacio.classList.remove('d-none');
+        return;
+      }
+      vacio.classList.add('d-none');
+
+      lista.innerHTML = mascotas.map(m => `
+        <div class="col-md-6">
+          <div class="card-soft p-3 h-100 text-center position-relative">
+            <div class="position-absolute top-0 end-0 d-flex gap-1 p-2">
+              <button class="btn btn-sm btn-link text-brand p-0"
+                      onclick="abrirEditarMascota(${m.id})" aria-label="Editar" title="Editar">
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+              <button class="btn btn-sm btn-link text-danger p-0"
+                      onclick="eliminarMascota(${m.id})" aria-label="Eliminar" title="Eliminar">
+                <i class="bi bi-x-circle-fill fs-5"></i>
+              </button>
+            </div>
+
+            <img src="${m.foto || 'https://placehold.co/120x120/ff6b4a/ffffff?text=%F0%9F%90%BE'}"
+                 alt="${m.nombre}"
+                 class="rounded-circle mb-2 mx-auto"
+                 style="width:90px;height:90px;object-fit:cover;border:3px solid var(--brand-soft);">
+            <div class="fw-bold">${m.nombre}</div>
+            <div class="text-secondary small mb-1">${m.tipo}${m.edad ? ' · ' + m.edad : ''}</div>
+            ${m.peso ? `<div class="text-secondary small mb-1"><i class="bi bi-speedometer2 me-1"></i>${m.peso} kg</div>` : ''}
+            ${m.notas ? `<div class="text-secondary small fst-italic mb-2">${m.notas}</div>` : ''}
+            ${m.peso ? `
+              <button class="btn btn-outline-brand btn-sm rounded-pill w-100 mt-2"
+                      onclick="mostrarRecomendaciones(${m.id})">
+                <i class="bi bi-stars me-1"></i>Plan de cuidado
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ---------- ABRIR MODAL PUBLICAR PERDIDA ---------- */
+    function abrirModalPerdida() {
+      document.getElementById('formPerdida').reset();
+      document.getElementById('previewFotoPerdida').src =
+        'https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%93%B7';
+      fotoPerdidaBase64 = '';
+      modalPerdidaObj.show();
+    }
+
+    /* ---------- GUARDAR MASCOTA PERDIDA ---------- */
+    function guardarPerdida() {
+      const nombre = document.getElementById('perdidaNombre').value.trim();
+      const tipo = document.getElementById('perdidaTipo').value;
+      const fechaPerdida = document.getElementById('perdidaFecha').value;
+      const telefono = document.getElementById('perdidaTelefono').value.trim();
+      const lugar = document.getElementById('perdidaLugar').value.trim();
+
+      if (!nombre || !tipo || !fechaPerdida || !telefono || !lugar) {
+        alert('Completa los campos obligatorios (*).');
+        return;
+      }
+
+      const nueva = {
+        id: Date.now(),
+        nombre, tipo,
+        raza: document.getElementById('perdidaRaza').value.trim(),
+        sexo: document.getElementById('perdidaSexo').value,
+        edad: document.getElementById('perdidaEdad').value.trim(),
+        color: document.getElementById('perdidaColor').value.trim(),
+        fechaPerdida, telefono, lugar,
+        descripcion: document.getElementById('perdidaDescripcion').value.trim(),
+        foto: fotoPerdidaBase64,
+        correoPublicador: usuarioActual.correo || '',
+        fechaPublicacion: Date.now()
+      };
+
+      const lista = obtenerMascotasPerdidas();
+      lista.unshift(nueva);
+      guardarMascotasPerdidas(lista);
+
+      modalPerdidaObj.hide();
+      renderizarPerdidas();
+      mostrarAviso('¡Mascota publicada! Ya es visible en el inicio.');
+    }
+
+    /* ---------- RENDERIZAR PERDIDAS DEL USUARIO ---------- */
+    function renderizarPerdidas() {
+      const contenedor = document.getElementById('listaPerdidas');
+      const vacio = document.getElementById('sinPerdidas');
+      const todas = obtenerMascotasPerdidas();
+      const mias = todas.filter(p => p.correoPublicador === (usuarioActual.correo || ''));
+
+      if (mias.length === 0) {
+        contenedor.innerHTML = '';
+        vacio.classList.remove('d-none');
+        return;
+      }
+      vacio.classList.add('d-none');
+
+      contenedor.innerHTML = mias.map(p => `
+        <div class="col-md-6">
+          <div class="card-soft p-3 h-100 position-relative">
+            <button class="btn btn-sm btn-link text-danger p-0 position-absolute top-0 end-0 m-2"
+                    onclick="eliminarPerdida(${p.id})" title="Eliminar publicación">
+              <i class="bi bi-x-circle-fill fs-5"></i>
+            </button>
+            <div class="d-flex gap-3">
+              <img src="${p.foto || 'https://placehold.co/100x100/ff6b4a/ffffff?text=%F0%9F%90%BE'}"
+                   alt="${p.nombre}"
+                   style="width:80px;height:80px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+              <div class="flex-grow-1" style="min-width:0;">
+                <div class="fw-bold">${p.nombre}</div>
+                <div class="small text-secondary">${p.tipo}${p.raza ? ' · ' + p.raza : ''}${p.edad ? ' · ' + p.edad : ''}</div>
+                <div class="small text-secondary text-truncate"><i class="bi bi-geo-alt-fill text-brand me-1"></i>${p.lugar}</div>
+                <div class="small text-secondary"><i class="bi bi-calendar-event text-brand me-1"></i>Perdido el ${new Date(p.fechaPerdida + 'T00:00:00').toLocaleDateString('es-CO')}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ---------- ELIMINAR PERDIDA ---------- */
+    function eliminarPerdida(id) {
+      if (!confirm('¿Eliminar esta publicación?')) return;
+      const lista = obtenerMascotasPerdidas().filter(p => p.id !== id);
+      guardarMascotasPerdidas(lista);
+      renderizarPerdidas();
+      mostrarAviso('Publicación eliminada.');
+    }
+
+    /* ---------- ABRIR MODAL ADOPCIÓN ---------- */
+    function abrirModalAdopcion() {
+      document.getElementById('formAdopcion').reset();
+      document.getElementById('previewFotoAdopcion').src =
+        'https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%8F%A0';
+      fotoAdopcionBase64 = '';
+      modalAdopcionObj.show();
+    }
+
+    /* ---------- GUARDAR ADOPCIÓN ---------- */
+    function guardarAdopcion() {
+      const nombre = document.getElementById('adopcionNombre').value.trim();
+      const tipo = document.getElementById('adopcionTipo').value;
+      const ciudad = document.getElementById('adopcionCiudad').value.trim();
+      const telefono = document.getElementById('adopcionTelefono').value.trim();
+
+      if (!nombre || !tipo || !ciudad || !telefono) {
+        alert('Completa los campos obligatorios (*).');
+        return;
+      }
+
+      const nueva = {
+        id: Date.now(),
+        nombre, tipo, ciudad, telefono,
+        raza: document.getElementById('adopcionRaza').value.trim(),
+        sexo: document.getElementById('adopcionSexo').value,
+        edad: document.getElementById('adopcionEdad').value.trim(),
+        esterilizado: document.getElementById('adopcionEsterilizado').value,
+        vacunas: document.getElementById('adopcionVacunas').value,
+        descripcion: document.getElementById('adopcionDescripcion').value.trim(),
+        foto: fotoAdopcionBase64,
+        correoPublicador: usuarioActual.correo || '',
+        fechaPublicacion: Date.now()
+      };
+
+      const lista = obtenerAdopciones();
+      lista.unshift(nueva);
+      guardarAdopciones(lista);
+
+      modalAdopcionObj.hide();
+      renderizarAdopciones();
+      mostrarAviso('¡Mascota publicada en adopción! Ya es visible en el inicio.');
+    }
+
+    /* ---------- RENDERIZAR MIS ADOPCIONES ---------- */
+    function renderizarAdopciones() {
+      const contenedor = document.getElementById('listaAdopciones');
+      const vacio = document.getElementById('sinAdopciones');
+      const todas = obtenerAdopciones();
+      const mias = todas.filter(a => a.correoPublicador === (usuarioActual.correo || ''));
+
+      if (mias.length === 0) {
+        contenedor.innerHTML = '';
+        vacio.classList.remove('d-none');
+        return;
+      }
+      vacio.classList.add('d-none');
+
+      contenedor.innerHTML = mias.map(a => `
+        <div class="col-md-6">
+          <div class="card-soft p-3 h-100 position-relative">
+            <button class="btn btn-sm btn-link text-danger p-0 position-absolute top-0 end-0 m-2"
+                    onclick="eliminarAdopcion(${a.id})" title="Eliminar publicación">
+              <i class="bi bi-x-circle-fill fs-5"></i>
+            </button>
+            <div class="d-flex gap-3">
+              <img src="${a.foto || 'https://placehold.co/100x100/ff6b4a/ffffff?text=%F0%9F%90%BE'}"
+                   alt="${a.nombre}"
+                   style="width:80px;height:80px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+              <div class="flex-grow-1" style="min-width:0;">
+                <div class="fw-bold">${a.nombre}</div>
+                <div class="small text-secondary">${a.tipo}${a.raza ? ' · ' + a.raza : ''}${a.edad ? ' · ' + a.edad : ''}</div>
+                <div class="small text-secondary text-truncate"><i class="bi bi-geo-alt-fill text-brand me-1"></i>${a.ciudad}</div>
+                <div class="small text-secondary"><i class="bi bi-telephone-fill text-brand me-1"></i>${a.telefono}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ---------- ELIMINAR ADOPCIÓN ---------- */
+    function eliminarAdopcion(id) {
+      if (!confirm('¿Eliminar esta publicación?')) return;
+      const lista = obtenerAdopciones().filter(a => a.id !== id);
+      guardarAdopciones(lista);
+      renderizarAdopciones();
+      mostrarAviso('Publicación eliminada.');
+    }
+
+    /* ---------- ABRIR MODAL DONACIÓN ---------- */
+    function abrirModalDonacion() {
+      document.getElementById('formDonacion').reset();
+      document.getElementById('previewFotoDonacion').src =
+        'https://placehold.co/150x150/ff6b4a/ffffff?text=%F0%9F%8E%81';
+      fotoDonacionBase64 = '';
+      modalDonacionObj.show();
+    }
+
+    /* ---------- GUARDAR DONACIÓN ---------- */
+    function guardarDonacion() {
+      const titulo = document.getElementById('donacionTitulo').value.trim();
+      const modalidad = document.getElementById('donacionModalidad').value;
+      const tipoDonacion = document.getElementById('donacionTipo').value;
+      const ciudad = document.getElementById('donacionCiudad').value.trim();
+      const telefono = document.getElementById('donacionTelefono').value.trim();
+
+      if (!titulo || !tipoDonacion || !ciudad || !telefono) {
+        alert('Completa los campos obligatorios (*).');
+        return;
+      }
+
+      const nueva = {
+        id: Date.now(),
+        titulo, modalidad, tipoDonacion, ciudad, telefono,
+        beneficiario: document.getElementById('donacionBeneficiario').value.trim(),
+        descripcion: document.getElementById('donacionDescripcion').value.trim(),
+        foto: fotoDonacionBase64,
+        correoPublicador: usuarioActual.correo || '',
+        fechaPublicacion: Date.now()
+      };
+
+      const lista = obtenerDonaciones();
+      lista.unshift(nueva);
+      guardarDonaciones(lista);
+
+      modalDonacionObj.hide();
+      renderizarDonaciones();
+      mostrarAviso('¡Donación publicada! Ya es visible en el inicio.');
+    }
+
+    /* ---------- RENDERIZAR MIS DONACIONES ---------- */
+    function renderizarDonaciones() {
+      const contenedor = document.getElementById('listaDonaciones');
+      const vacio = document.getElementById('sinDonaciones');
+      const todas = obtenerDonaciones();
+      const mias = todas.filter(d => d.correoPublicador === (usuarioActual.correo || ''));
+
+      if (mias.length === 0) {
+        contenedor.innerHTML = '';
+        vacio.classList.remove('d-none');
+        return;
+      }
+      vacio.classList.add('d-none');
+
+      contenedor.innerHTML = mias.map(d => {
+        const esOfrece = d.modalidad === 'ofrezco';
+        const badgeClase = esOfrece ? 'bg-success' : 'bg-warning text-dark';
+        const badgeTexto = esOfrece ? 'OFRECE' : 'NECESITA';
+
+        return `
+          <div class="col-md-6">
+            <div class="card-soft p-3 h-100 position-relative">
+              <button class="btn btn-sm btn-link text-danger p-0 position-absolute top-0 end-0 m-2"
+                      onclick="eliminarDonacion(${d.id})" title="Eliminar publicación">
+                <i class="bi bi-x-circle-fill fs-5"></i>
+              </button>
+              <div class="d-flex gap-3">
+                <img src="${d.foto || 'https://placehold.co/100x100/ff6b4a/ffffff?text=%F0%9F%8E%81'}"
+                     alt="${d.titulo}"
+                     style="width:80px;height:80px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+                <div class="flex-grow-1" style="min-width:0;">
+                  <span class="badge ${badgeClase} rounded-pill mb-1" style="font-size:.65rem;">${badgeTexto}</span>
+                  <div class="fw-bold">${d.titulo}</div>
+                  <div class="small text-secondary">${d.tipoDonacion}</div>
+                  <div class="small text-secondary text-truncate"><i class="bi bi-geo-alt-fill text-brand me-1"></i>${d.ciudad}</div>
+                  <div class="small text-secondary"><i class="bi bi-telephone-fill text-brand me-1"></i>${d.telefono}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ---------- ELIMINAR DONACIÓN ---------- */
+    function eliminarDonacion(id) {
+      if (!confirm('¿Eliminar esta publicación?')) return;
+      const lista = obtenerDonaciones().filter(d => d.id !== id);
+      guardarDonaciones(lista);
+      renderizarDonaciones();
+      mostrarAviso('Publicación eliminada.');
+    }
+
+    /* ============================================================
+       TABLA DE RAZAS Y DIAGNÓSTICO
+       ============================================================ */
+    const RAZAS_PERRO = {
+      'chihuahua': { min: 1.5, max: 3, talla: 'toy' }, 'yorkie': { min: 2, max: 3.2, talla: 'toy' },
+      'yorkshire': { min: 2, max: 3.2, talla: 'toy' }, 'pomerania': { min: 1.8, max: 3.5, talla: 'toy' },
+      'poodle': { min: 2, max: 4, talla: 'toy' }, 'pincher': { min: 2, max: 4, talla: 'toy' },
+      'shih tzu': { min: 4, max: 7.5, talla: 'pequeño' }, 'schnauzer': { min: 5, max: 8, talla: 'pequeño' },
+      'french': { min: 4, max: 6, talla: 'pequeño' }, 'beagle': { min: 9, max: 14, talla: 'mediano' },
+      'cocker': { min: 10, max: 15, talla: 'mediano' }, 'bulldog': { min: 18, max: 25, talla: 'mediano' },
+      'pitbull': { min: 15, max: 27, talla: 'mediano' }, 'husky': { min: 16, max: 27, talla: 'mediano' },
+      'border': { min: 14, max: 20, talla: 'mediano' }, 'labrador': { min: 25, max: 36, talla: 'grande' },
+      'golden': { min: 25, max: 34, talla: 'grande' }, 'pastor': { min: 22, max: 40, talla: 'grande' },
+      'rottweiler': { min: 35, max: 60, talla: 'grande' }, 'doberman': { min: 32, max: 45, talla: 'grande' },
+      'criollo': { min: 8, max: 22, talla: 'variable' }, 'mestizo': { min: 8, max: 22, talla: 'variable' }
+    };
+
+    const RAZAS_GATO = {
+      'siames': { min: 3, max: 5 }, 'siamés': { min: 3, max: 5 }, 'persa': { min: 3.5, max: 6 },
+      'angora': { min: 3, max: 5.5 }, 'maine coon': { min: 5, max: 9 }, 'bengali': { min: 4, max: 7 },
+      'criollo': { min: 3.5, max: 5 }, 'carey': { min: 3.5, max: 5 }, 'mestizo': { min: 3.5, max: 5 }
+    };
+
+    function detectarRangoIdeal(mascota) {
+      const notas = (mascota.notas || '').toLowerCase();
+      const tipo = (mascota.tipo || '').toLowerCase();
+      const tabla = tipo.includes('perro') ? RAZAS_PERRO : tipo.includes('gato') ? RAZAS_GATO : {};
+
+      for (const raza in tabla) {
+        if (notas.includes(raza)) {
+          return { ...tabla[raza], razaDetectada: raza, tipoTabla: tipo.includes('perro') ? 'perro' : 'gato' };
+        }
+      }
+
+      if (tipo.includes('perro')) {
+        const peso = parseFloat(mascota.peso) || 0;
+        if (peso <= 8)  return { min: 2,  max: 8,   talla: 'pequeño',  razaDetectada: null, tipoTabla: 'perro' };
+        if (peso <= 20) return { min: 9,  max: 20,  talla: 'mediano',  razaDetectada: null, tipoTabla: 'perro' };
+        return              { min: 22, max: 45,  talla: 'grande',   razaDetectada: null, tipoTabla: 'perro' };
+      }
+      if (tipo.includes('gato')) return { min: 3.5, max: 5, razaDetectada: null, tipoTabla: 'gato' };
+      return null;
+    }
+
+    function calcularDiagnostico(mascota) {
+      const peso = parseFloat(mascota.peso) || 0;
+      if (!peso) return null;
+      const rango = detectarRangoIdeal(mascota);
+      if (!rango) return null;
+      const { min, max } = rango;
+      let estado, color, icono, mensaje;
+
+      if (peso < min * 0.85) {
+        estado = 'Bajo peso / Desnutrición'; color = 'info'; icono = 'bi-exclamation-triangle-fill';
+        mensaje = `Su peso está muy por debajo del rango saludable (${min}-${max} kg). Se recomienda una dieta de recuperación y visita al veterinario.`;
+      } else if (peso < min) {
+        estado = 'Ligeramente bajo de peso'; color = 'info'; icono = 'bi-info-circle-fill';
+        mensaje = `Está un poco por debajo del rango ideal (${min}-${max} kg). Aumenta ligeramente la porción diaria.`;
+      } else if (peso <= max) {
+        estado = 'Peso normal ✓'; color = 'success'; icono = 'bi-check-circle-fill';
+        mensaje = `¡Excelente! Está dentro del rango ideal (${min}-${max} kg). Mantén la dieta y el ejercicio actuales.`;
+      } else if (peso <= max * 1.15) {
+        estado = 'Sobrepeso'; color = 'warning'; icono = 'bi-exclamation-circle-fill';
+        mensaje = `Está un poco por encima del rango ideal (${min}-${max} kg). Reduce snacks y aumenta el ejercicio diario.`;
+      } else {
+        estado = 'Obesidad'; color = 'danger'; icono = 'bi-x-octagon-fill';
+        mensaje = `Su peso está muy por encima del rango ideal (${min}-${max} kg). Requiere dieta estricta y control veterinario.`;
+      }
+
+      return { estado, color, icono, mensaje, rangoIdeal: `${min}-${max} kg`, razaDetectada: rango.razaDetectada };
+    }
+
+    /* ============================================================
+       MOTOR DE RECOMENDACIONES
+       ============================================================ */
+    function calcularRecomendaciones(mascota) {
+      const peso = parseFloat(mascota.peso) || 0;
+      const tipo = (mascota.tipo || '').toLowerCase();
+      const actividad = mascota.actividad || 'media';
+      if (!peso || peso <= 0) return null;
+
+      const diagnostico = calcularDiagnostico(mascota);
+      let gramosPorKg;
+
+      if (tipo.includes('perro')) {
+        if (actividad === 'baja') gramosPorKg = 15;
+        else if (actividad === 'alta') gramosPorKg = 30;
+        else gramosPorKg = 22;
+      } else if (tipo.includes('gato')) {
+        if (actividad === 'baja') gramosPorKg = 40;
+        else if (actividad === 'alta') gramosPorKg = 70;
+        else gramosPorKg = 55;
+      } else {
+        gramosPorKg = 20;
+      }
+
+      if (diagnostico && (diagnostico.estado === 'Sobrepeso' || diagnostico.estado === 'Obesidad')) {
+        gramosPorKg = Math.round(gramosPorKg * 0.8);
+      }
+      if (diagnostico && diagnostico.estado.includes('Bajo peso')) {
+        gramosPorKg = Math.round(gramosPorKg * 1.2);
+      }
+
+      const porcionDiaria = Math.round(peso * gramosPorKg);
+      const porcionComida = Math.round(porcionDiaria / 2);
+
+      let marca, marcaDesc;
+      if (tipo.includes('perro')) {
+        if (peso <= 10) { marca = 'Dog Chow / Alpo (Razas Pequeñas)'; marcaDesc = 'Croquetas pequeñas, ricas en proteína y calcio.'; }
+        else if (peso <= 25) { marca = 'Nutriss / Agility Gold'; marcaDesc = 'Fórmula mediana, buena digestibilidad y energía.'; }
+        else { marca = 'Royal Canin / Pro Plan (Large)'; marcaDesc = 'Croquetas grandes, protección articular.'; }
+      } else if (tipo.includes('gato')) {
+        if (peso <= 4) { marca = 'Donkat / Mirringo'; marcaDesc = 'Alimento seco, control urinario y pelo brillante.'; }
+        else { marca = 'Oh Mai Gat / Cat Chow'; marcaDesc = 'Alta proteína, taurina y Omega 3.'; }
+      } else { marca = 'Consulta con tu veterinario'; marcaDesc = 'Recomendación personalizada según especie.'; }
+
+      let rutina = {};
+      if (tipo.includes('perro')) {
+        if (peso <= 10) {
+          rutina = {
+            calentamiento: '5 min de caminata lenta a su ritmo.',
+            principal: actividad === 'alta' ? '45 min de caminata rápida + 15 min de juego con pelota.' : '25 min de caminata tranquila.',
+            mental: '10 min de juegos de olfato (esconder premios por la casa).',
+            extra: 'Evita saltos desde el sofá para proteger sus rodillas.'
+          };
+        } else if (peso <= 25) {
+          rutina = {
+            calentamiento: '5-10 min de caminata relajada.',
+            principal: actividad === 'alta' ? '60 min de trote o caminata rápida + 20 min de juego en el parque.' : '40 min de caminata constante.',
+            mental: '15 min de juegos de búsqueda o masticables resistentes.',
+            extra: 'Si hay sobrepeso, evita terrenos muy inclinados al principio.'
+          };
+        } else {
+          rutina = {
+            calentamiento: '10 min de caminata lenta.',
+            principal: actividad === 'alta' ? '60 min de caminata + natación (si es posible) o juego suave.' : '45 min de caminata moderada.',
+            mental: '15 min de comandos básicos o esconder comida en juguetes (Kongs).',
+            extra: 'El sobrepeso en razas grandes afecta mucho las caderas, ¡no lo sobre-exijas!'
+          };
+        }
+      } else if (tipo.includes('gato')) {
+        rutina = {
+          calentamiento: '5 min de estiramientos y caricias.',
+          principal: actividad === 'alta' ? '30-45 min de juego activo dividido en 3 sesiones.' : '15-20 min de juego en sesiones cortas.',
+          mental: '10 min con ratón interactivo, puntero láser (terminando siempre en un premio) o cajas de cartón.',
+          extra: 'Usa torres o estantes para que pueda trepar. Los gatos necesitan cazar "virtualmente".'
+        };
+      } else {
+        rutina = {
+          calentamiento: 'Juego libre.',
+          principal: '20 min de actividad diaria.',
+          mental: 'Exploración supervisada.',
+          extra: 'Consulta a tu vet.'
+        };
+      }
+
+      if (diagnostico && diagnostico.estado === 'Obesidad') {
+        rutina.extra = '⚠️ ALERTA DE OBESIDAD: Aumenta el ejercicio de bajo impacto (caminata o natación) gradualmente y consulta a tu veterinario.';
+      }
+
+      const recetario = [];
+      if (tipo.includes('perro')) {
+        recetario.push({
+          nombre: 'Galletas de Avena y Zanahoria', tiempo: '30 min',
+          ingredientes: '1 taza de avena molida, 1 zanahoria rallada, 1 huevo, 1 cda de mantequilla de maní (sin xilitol).',
+          preparacion: 'Mezcla todo, forma bolitas, aplasta ligeramente y hornea a 180°C por 20 min. Deja enfriar.',
+          beneficio: 'Excelente para la digestión y como premio bajo en calorías.'
+        });
+        recetario.push({
+          nombre: 'Pollo y Calabaza Digestivo', tiempo: '40 min',
+          ingredientes: '1 pechuga de pollo sin hueso ni piel, 1 taza de calabaza (ahuyama) sin cáscara, 1/2 taza de arroz integral.',
+          preparacion: 'Hierve el pollo y desmenúzalo. Cocina la calabaza y el arroz. Mézclalo todo sin sal ni condimentos.',
+          beneficio: 'Ideal para días de malestar estomacal o transición de comida.'
+        });
+        recetario.push({
+          nombre: 'Helado de Yogur y Plátano', tiempo: '4 horas (congelación)',
+          ingredientes: '1 plátano maduro, 1/2 taza de yogur griego natural sin azúcar.',
+          preparacion: 'Licúa y vierte en moldes para hielo o recipientes pequeños. Congela.',
+          beneficio: 'Un snack refrescante perfecto para días de calor. Rico en probióticos.'
+        });
+      } else if (tipo.includes('gato')) {
+        recetario.push({
+          nombre: 'Snack de Pollo Deshidratado', tiempo: '2 horas',
+          ingredientes: '1 pechuga de pollo (solo carne).',
+          preparacion: 'Corta el pollo en tiras muy finas. Hornea a baja temperatura (100°C) por 1.5 - 2 horas hasta que estén secas y crujientes.',
+          beneficio: 'Altísimo en proteína, perfecto para gatos exigentes y para limpiar sus dientes.'
+        });
+        recetario.push({
+          nombre: 'Salmón con Calabacín al Vapor', tiempo: '20 min',
+          ingredientes: '1 filete pequeño de salmón fresco (sin espinas), 1/4 de calabacín rallado.',
+          preparacion: 'Cocina al vapor el salmón y el calabacín. Desmenuza el salmón y mezcla con el calabacín. Sirve tibio.',
+          beneficio: 'Rico en Omega 3 para un pelaje brillante y saludable.'
+        });
+        recetario.push({
+          nombre: 'Paté Casero de Hígado', tiempo: '25 min',
+          ingredientes: '100g de hígado de pollo, 1 cda de aceite de coco, 1/2 taza de caldo de pollo sin sal.',
+          preparacion: 'Cocina el hígado, licúalo con el aceite y el caldo hasta obtener una pasta suave.',
+          beneficio: 'Excelente fuente de hierro y vitamina A. Dalo solo como premio ocasional (es muy denso).'
+        });
+      }
+
+      const consejos = [];
+      if (diagnostico && diagnostico.estado.includes('Bajo peso')) consejos.push('Alimenta en pequeñas porciones varias veces al día para mejor absorción.');
+      if (diagnostico && (diagnostico.estado === 'Sobrepeso' || diagnostico.estado === 'Obesidad')) {
+        consejos.push('Elimina los snacks entre comidas o reemplázalos por zanahoria o pepino.');
+        consejos.push('Pesa a tu mascota cada 15 días para monitorear el progreso.');
+      }
+      if (actividad === 'baja') consejos.push('Divide la comida en 2-3 porciones pequeñas al día.');
+      if (tipo.includes('gato')) consejos.push('Ofrece agua fresca siempre. Considera fuente de agua para estimular la hidratación.');
+      consejos.push('⚠️ IMPORTANTE: Nunca le des cebolla, ajo, uvas, pasas, chocolate, aguacate ni xilitol. Son tóxicos.');
+      consejos.push('Si vas a cambiar su dieta a comida casera, hazlo progresivamente (80% actual / 20% nueva) y consulta a tu veterinario.');
+
+      return { porcionDiaria, porcionComida, marca, marcaDesc, rutina, recetario, consejos, diagnostico };
+    }
+
+    /* ============================================================
+       MOSTRAR RECOMENDACIONES
+       ============================================================ */
+    function mostrarRecomendaciones(id) {
+      const mascotas = obtenerMascotas();
+      const mascota = mascotas.find(m => m.id === id);
+      if (!mascota) return;
+
+      const rec = calcularRecomendaciones(mascota);
+      if (!rec) {
+        alert('Esta mascota no tiene peso registrado.');
+        return;
+      }
+
+      document.getElementById('tituloRecomendaciones').innerHTML =
+        `<i class="bi bi-stars text-brand me-2"></i>Plan para ${mascota.nombre}`;
+
+      const diag = rec.diagnostico;
+      const bloqueDiagnostico = diag ? `
+        <div class="alert alert-${diag.color} rounded-4 mb-4 border-0 shadow-sm">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi ${diag.icono} fs-3"></i>
+            <div class="flex-grow-1">
+              <h6 class="fw-bold mb-1">${diag.estado}</h6>
+              <p class="small mb-2">${diag.mensaje}</p>
+              <div class="small"><strong>Rango ideal:</strong> ${diag.rangoIdeal} ${diag.razaDetectada ? ` · <em>Raza: ${diag.razaDetectada}</em>` : ''}</div>
+            </div>
+          </div>
+        </div>
+      ` : '';
+
+      document.getElementById('cuerpoRecomendaciones').innerHTML = `
+        ${bloqueDiagnostico}
+
+        <div class="row g-2 mb-4 text-center">
+          <div class="col-4">
+            <div class="bg-light p-2 rounded-3 border">
+              <div class="fw-bold text-brand">${rec.porcionDiaria} g</div>
+              <div class="text-secondary" style="font-size:.75rem;">Comida al día</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="bg-light p-2 rounded-3 border">
+              <div class="fw-bold text-brand">${rec.porcionComida} g</div>
+              <div class="text-secondary" style="font-size:.75rem;">Por comida</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="bg-light p-2 rounded-3 border">
+              <div class="fw-bold text-brand">${rec.rutina.principal.split(' ')[0]} m</div>
+              <div class="text-secondary" style="font-size:.75rem;">Ejercicio diario</div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav nav-pills nav-fill mb-3 bg-light p-1 rounded-pill" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active rounded-pill fw-semibold" id="pills-comida-tab" data-bs-toggle="pill" data-bs-target="#pills-comida" type="button" role="tab"><i class="bi bi-bag-heart me-1"></i> Comida</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-pill fw-semibold" id="pills-ejercicio-tab" data-bs-toggle="pill" data-bs-target="#pills-ejercicio" type="button" role="tab"><i class="bi bi-bicycle me-1"></i> Ejercicio</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-pill fw-semibold" id="pills-recetario-tab" data-bs-toggle="pill" data-bs-target="#pills-recetario" type="button" role="tab"><i class="bi bi-egg-fried me-1"></i> Recetario</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-comida" role="tabpanel">
+            <div class="card-soft p-4 h-100 border-0 bg-brand-soft">
+              <h6 class="fw-bold mb-3 text-brand"><i class="bi bi-check-circle-fill me-2"></i>Alimento Recomendado</h6>
+              <p class="mb-1 fw-bold fs-5">${rec.marca}</p>
+              <p class="text-secondary small mb-4">${rec.marcaDesc}</p>
+
+              <h6 class="fw-bold mb-2">Consejos de alimentación:</h6>
+              <ul class="mb-0 small text-secondary ps-3">
+                ${rec.consejos.map(c => `<li class="mb-1">${c}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="pills-ejercicio" role="tabpanel">
+            <div class="card-soft p-4 border-0 bg-light">
+              <h6 class="fw-bold mb-3 text-brand"><i class="bi bi-activity me-2"></i>Rutina Diaria</h6>
+
+              <div class="d-flex mb-3 gap-2 align-items-start">
+                <div class="badge bg-warning text-dark rounded-pill py-2 px-3 mt-1"><i class="bi bi-sun me-1"></i>Calentamiento</div>
+                <div class="small text-secondary flex-grow-1">${rec.rutina.calentamiento}</div>
+              </div>
+              <div class="d-flex mb-3 gap-2 align-items-start">
+                <div class="badge bg-success text-white rounded-pill py-2 px-3 mt-1"><i class="bi bi-lightning-charge me-1"></i>Principal</div>
+                <div class="small text-secondary flex-grow-1">${rec.rutina.principal}</div>
+              </div>
+              <div class="d-flex mb-3 gap-2 align-items-start">
+                <div class="badge bg-info text-dark rounded-pill py-2 px-3 mt-1"><i class="bi bi-brain me-1"></i>Mental</div>
+                <div class="small text-secondary flex-grow-1">${rec.rutina.mental}</div>
+              </div>
+
+              <div class="alert alert-warning rounded-3 mt-3 mb-0 small border-0">
+                <i class="bi bi-info-circle-fill me-2"></i><strong>Nota:</strong> ${rec.rutina.extra}
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="pills-recetario" role="tabpanel">
+            <div class="alert alert-danger rounded-3 small mb-3 border-0">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <strong>Recuerda:</strong> Estas recetas son snacks o complementos. La base de su dieta debe ser el concentrado. No uses sal, cebolla, ajo ni condimentos.
+            </div>
+            <div class="row g-3">
+              ${rec.recetario.map(r => `
+                <div class="col-md-6">
+                  <div class="card-soft p-3 h-100 border">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h6 class="fw-bold text-brand mb-0">${r.nombre}</h6>
+                      <span class="badge bg-secondary rounded-pill" style="font-size:.65rem;"><i class="bi bi-clock me-1"></i>${r.tiempo}</span>
+                    </div>
+                    <p class="small text-secondary mb-2"><strong>Ingredientes:</strong> ${r.ingredientes}</p>
+                    <p class="small text-secondary mb-2"><strong>Preparación:</strong> ${r.preparacion}</p>
+                    <p class="small text-success mb-0 fst-italic"><i class="bi bi-heart-pulse me-1"></i>${r.beneficio}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      modalRecomendacionesObj.show();
+    }
+
+    /* ---------- AVISO ---------- */
+    function mostrarAviso(msg) {
+      const aviso = document.getElementById('avisoGuardado');
+      aviso.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i>${msg}`;
+      aviso.classList.remove('d-none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => aviso.classList.add('d-none'), 3000);
+    }
+  </script>
+
+  <!-- ================= MODAL RECOMENDACIONES ================= -->
+  <div class="modal fade" id="modalRecomendaciones" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="tituloRecomendaciones">
+            <i class="bi bi-lightbulb-fill text-brand me-2"></i>Plan de cuidado
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="cuerpoRecomendaciones"></div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-brand rounded-pill px-4" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
